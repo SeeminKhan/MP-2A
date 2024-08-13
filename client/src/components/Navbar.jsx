@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Search, FavoriteBorder, ShoppingCart, AccountCircle } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -54,7 +55,9 @@ const Navbar = () => {
             <Search className="cursor-pointer text-lg" />
             <FavoriteBorder className="cursor-pointer text-lg" />
             <ShoppingCart className="cursor-pointer text-lg" />
-            <AccountCircle className="cursor-pointer text-lg" />
+            <Link to="/login" className="cursor-pointer text-lg">
+            <AccountCircle />
+          </Link>
           </div>
         </div>
 
