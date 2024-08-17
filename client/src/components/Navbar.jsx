@@ -28,7 +28,7 @@ const Navbar = () => {
         className={`fixed w-full z-10 transition-colors duration-300 ${
           scrolled ? 'bg-white shadow-lg text-stone-900' : 'bg-transparent text-white'
         }`}
-        style={{ height: '70px' }} // Increase the height here
+        style={{ height: '30px' }} // Increase the height here
       >
         <div className="container mx-auto px-4 py-2 flex items-center h-full">
           {/* USD Dropdown on the Left */}
