@@ -4,6 +4,7 @@ import Footer from './components/Footer'; // Adjust the import path as needed
 import HomePage from './pages/Home'; // Adjust the import path as needed
 import LoginPage from './pages/Login'; // Adjust the import path as needed
 import RegisterPage from './pages/Register'; // Adjust the import path as needed
+import Footer from './components/Footer';
 
 const App = () => {
   return (
