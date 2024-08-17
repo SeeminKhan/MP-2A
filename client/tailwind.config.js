@@ -6,10 +6,6 @@ export default {
   ],
   theme: {
     extend: {
-      colors:{
-        customPink: '#e2bab3',
-        beigeWhite: '#fff',
-      },
     },
   },
   plugins: [],
