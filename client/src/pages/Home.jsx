@@ -37,13 +37,13 @@ const HomePage = () => {
 
       {/* Featured Cards */}
       <section className="py-16 px-4 md:px-16">
-        <h2 className="text-3xl font-semibold text-center mb-12 text-customPink">Our Features</h2>
+        <h2 className="text-3xl font-semibold text-center mb-12 text-customBlack">Our Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 */}
-          <div className="bg-customPink p-8 rounded-lg shadow-md">
+          <div className="bg-white text-blue p-8 rounded-lg shadow-md">
             <img
-              src="https://via.placeholder.com/300"
-              alt="Feature 1"
+              src={Slider1}
+              alt={Slider1}
               className="mb-6 w-full h-48 object-cover rounded-lg"
             />
             <h3 className="text-xl font-semibold mb-4 text-beigeWhite">Feature 1</h3>
@@ -55,7 +55,7 @@ const HomePage = () => {
           {/* Card 2 */}
           <div className="bg-customPink p-8 rounded-lg shadow-md">
             <img
-              src="https://via.placeholder.com/300"
+              src="./components/cardImg/card3.jpg"
               alt="Feature 2"
               className="mb-6 w-full h-48 object-cover rounded-lg"
             />
@@ -68,7 +68,7 @@ const HomePage = () => {
           {/* Card 3 */}
           <div className="bg-customPink p-8 rounded-lg shadow-md">
             <img
-              src="https://via.placeholder.com/300"
+              src="./components/cardImg/card5.jpg"
               alt="Feature 3"
               className="mb-6 w-full h-48 object-cover rounded-lg"
             />
