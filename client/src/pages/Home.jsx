@@ -2,6 +2,7 @@ import  { useState, useEffect } from 'react';
 import Slider1 from "../assets/slider1.jpg";
 import Slider2 from "../assets/slider2.jpg";
 import Slider3 from "../assets/slider3.jpg";
+import Card from './Card';
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -40,44 +41,14 @@ const HomePage = () => {
         <h2 className="text-3xl font-semibold text-center mb-12 text-customBlack">Our Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 */}
-          <div className="bg-white text-blue p-8 rounded-lg shadow-md">
-            <img
-              src={Slider1}
-              alt={Slider1}
-              className="mb-6 w-full h-48 object-cover rounded-lg"
-            />
-            <h3 className="text-xl font-semibold mb-4 text-beigeWhite">Feature 1</h3>
-            <p className="text-beigeWhite mb-4">Description of Feature 1.</p>
-            <button className="bg-beigeWhite text-customPink py-2 px-4 rounded-full">
-              Learn More
-            </button>
-          </div>
+          <Card src={Slider1}/>
+
           {/* Card 2 */}
-          <div className="bg-customPink p-8 rounded-lg shadow-md">
-            <img
-              src="./components/cardImg/card3.jpg"
-              alt="Feature 2"
-              className="mb-6 w-full h-48 object-cover rounded-lg"
-            />
-            <h3 className="text-xl font-semibold mb-4 text-beigeWhite">Feature 2</h3>
-            <p className="text-beigeWhite mb-4">Description of Feature 2.</p>
-            <button className="bg-beigeWhite text-customPink py-2 px-4 rounded-full">
-              Learn More
-            </button>
-          </div>
+          <Card src={Slider2} />
+
           {/* Card 3 */}
-          <div className="bg-customPink p-8 rounded-lg shadow-md">
-            <img
-              src="./components/cardImg/card5.jpg"
-              alt="Feature 3"
-              className="mb-6 w-full h-48 object-cover rounded-lg"
-            />
-            <h3 className="text-xl font-semibold mb-4 text-beigeWhite">Feature 3</h3>
-            <p className="text-beigeWhite mb-4">Description of Feature 3.</p>
-            <button className="bg-beigeWhite text-customPink py-2 px-4 rounded-full">
-              Learn More
-            </button>
-          </div>
+          <Card src={Slider3} />
+
         </div>
       </section>
     </div>
