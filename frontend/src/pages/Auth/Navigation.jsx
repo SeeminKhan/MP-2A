@@ -1,139 +1,101 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { AiOutlineHome, AiOutlineShopping, AiOutlineLogin, AiOutlineUserAdd, AiOutlineShoppingCart } from "react-icons/ai";
 import {
-  AiOutlineHome,
-  AiOutlineShopping,
-  AiOutlineLogin,
-  AiOutlineUserAdd,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
-import { FaHeart } from "react-icons/fa";
+  Search,
+  FavoriteBorder,
+  ShoppingCart,
+  AccountCircle,
+} from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import "./Navigation.css";
-import { useSelector, useDispatch } from "react-redux";
-import { useLogoutMutation } from "../../redux/api/usersApiSlice";
-import { logout } from "../../redux/features/auth/authSlice";
-import FavoritesCount from "../Products/FavoritesCount";
+import Logo from "./logo.jpg"; // Adjust the path if needed
 
-const Navigation = () => {
-  const { userInfo } = useSelector((state) => state.auth);
-  const { cartItems } = useSelector((state) => state.cart);
+const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      setScrolled(offset > 0);
+    };
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
+    window.addEventListener("scroll", handleScroll);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [logoutApiCall] = useLogoutMutation();
-
-  const logoutHandler = async () => {
-    try {
-      await logoutApiCall().unwrap();
-      dispatch(logout());
-      navigate("/login");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <div
-      className={`flex justify-between items-center p-4 bg-black text-white w-full fixed top-0 z-50`}
-    >
-      <div className="flex space-x-6">
-        <Link to="/" className="flex items-center transition-transform hover:translate-y-1">
-          <AiOutlineHome size={24} />
-          <span className="hidden md:block ml-2">HOME</span>
-        </Link>
-        <Link to="/shop" className="flex items-center transition-transform hover:translate-y-1">
-          <AiOutlineShopping size={24} />
-          <span className="hidden md:block ml-2">SHOP</span>
-        </Link>
-        <Link to="/cart" className="flex items-center relative transition-transform hover:translate-y-1">
-          <AiOutlineShoppingCart size={24} />
-          <span className="hidden md:block ml-2">CART</span>
-          {cartItems.length > 0 && (
-            <span className="absolute top-0 right-0 bg-black text-white rounded-full px-2 py-1 text-xs">
-              {cartItems.reduce((a, c) => a + c.qty, 0)}
-            </span>
-          )}
-        </Link>
-        <Link to="/favorite" className="flex items-center transition-transform hover:translate-y-1">
-          <FaHeart size={24} />
-          <span className="hidden md:block ml-2">FAVORITES</span>
-          <FavoritesCount />
-        </Link>
-      </div>
+    <div>
+      <nav
+        className={`fixed w-full z-10 transition-colors duration-300 ${
+          scrolled ? "bg-white shadow-lg text-black" : "bg-transparent text-black"
+        }`}
+        style={{ height: "60px" }}
+      >
+        <div className="font-bold container mx-auto px-4 py-2 flex items-center h-full">
+          {/* USD Dropdown on the Left */}
+          <div className="flex items-center space-x-4 mr-auto">
+            <div className="relative">
+              <button
+                className={`px-3 py-2 rounded-md text-sm ${
+                  scrolled ? "bg-black text-white" : "bg-transparent text-black"
+                }`}
+              >
+                USD
+              </button>
+              {/* Add your dropdown logic here if needed */}
+            </div>
+          </div>
 
-      <div className="relative">
-        {userInfo ? (
-          <button onClick={toggleDropdown} className="flex items-center text-gray-300">
-            <span>{userInfo.username}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`h-4 w-4 ml-1 ${dropdownOpen ? "rotate-180" : ""}`}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19 9l-7 7-7-7"
+          {/* Brand Name / Logo in the Center */}
+          <div className="text-black text-4xl font-bold flex items-center justify-center w-full absolute left-0 right-0 mx-auto">
+            {scrolled ? (
+              <img
+                src={Logo}
+                alt="Logo"
+                className="h-12 w-auto object-contain"
+                style={{
+                  maxHeight: '50px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                  padding: '5px',
+                  borderRadius: '8px',
+                  boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+                }}
               />
-            </svg>
-          </button>
-        ) : (
-          <div className="flex space-x-4">
-            <Link to="/login" className="transition-transform hover:translate-y-1">
-              <AiOutlineLogin size={24} />
-              <span className="hidden md:block ml-2">LOGIN</span>
-            </Link>
-            <Link to="/register" className="transition-transform hover:translate-y-1">
-              <AiOutlineUserAdd size={24} />
-              <span className="hidden md:block ml-2">REGISTER</span>
+            ) : (
+              <span className="">Sharmeena Kariyaniya</span>
+            )}
+          </div>
+
+          {/* Icons on the Right */}
+          <div className="text-black flex items-center space-x-5 ml-auto">
+            <ShoppingCart className="cursor-pointer text-lg" />
+            <FavoriteBorder className="cursor-pointer text-lg" />
+            <Link to="/login" className="cursor-pointer text-lg">
+              <AccountCircle />
             </Link>
           </div>
-        )}
+        </div>
 
-        {dropdownOpen && userInfo && (
-          <ul className="absolute right-0 mt-2 w-40 bg-white text-black shadow-lg rounded-md">
-            {userInfo.isAdmin && (
-              <>
-                <li>
-                  <Link to="/admin/dashboard" className="block px-4 py-2 hover:bg-gray-100">
-                    Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/admin/productlist" className="block px-4 py-2 hover:bg-gray-100">
-                    Products
-                  </Link>
-                </li>
-                {/* More admin links */}
-              </>
-            )}
-            <li>
-              <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">
-                Profile
-              </Link>
-            </li>
-            <li>
-              <button onClick={logoutHandler} className="block w-full text-left px-4 py-2 hover:bg-gray-100">
-                Logout
-              </button>
-            </li>
-          </ul>
-        )}
-      </div>
+        {/* Secondary Navbar */}
+        <div
+          className={`transition-colors duration-300 ${
+            scrolled ? "bg-white text-black" : "bg-transparent text-black"
+          }`}
+          style={{ height: "60px" }}
+        >
+          <div className="text-black container mx-auto px-4 py-2 flex justify-center items-center space-x-8 h-full text-xl font-medium">
+            <Link to="/" className="hover:underline">Home</Link>
+            <Link to="/shop" className="hover:underline">Shop</Link>
+            <Link to="/collections" className="hover:underline">Collections</Link>
+            <Link to="/about" className="hover:underline">About</Link>
+            <Link to="/stars" className="hover:underline">Stars</Link>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 };
 
-export default Navigation;
+export default Navbar;
