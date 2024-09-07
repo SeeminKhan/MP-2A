@@ -3,6 +3,9 @@ import Slider1 from "../assets/slider1.jpg";
 import Slider2 from "../assets/slider2.jpg";
 import Slider3 from "../assets/slider3.jpg";
 import Card from './Card';
+import CarImg1 from "../cardImg/card4.jpg";
+import CarImg2 from "../cardImg/card2.jpg";
+import CarImg3 from "../cardImg/card5.jpg";
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -41,13 +44,13 @@ const HomePage = () => {
         <h2 className="text-3xl font-semibold text-center mb-12 text-customBlack">Our Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 */}
-          <Card src={Slider1}/>
+          <Card src={CarImg1}/>
 
           {/* Card 2 */}
-          <Card src={Slider2} />
+          <Card src={CarImg2} />
 
           {/* Card 3 */}
-          <Card src={Slider3} />
+          <Card src={CarImg3} />
 
         </div>
       </section>
