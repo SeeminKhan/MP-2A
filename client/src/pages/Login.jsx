@@ -54,6 +54,16 @@ const LoginPage = () => {
               />
             </div>
 
+            {/* Login Button */}
+            <div className="mb-6">
+              <button
+                type="submit"
+                className="w-full bg-gray-700 text-white font-bold py-3 px-4 rounded-lg hover:bg-gray-600 transition duration-300"
+              >
+                Login
+              </button>
+            </div>
+
             {/* Forgot Password Link */}
             <div className="mb-6 flex justify-end">
               <a href="/forgot-password" className="text-mauve hover:underline">
@@ -67,6 +77,7 @@ const LoginPage = () => {
             >
               Log in now
             </button>
+
             <p className="mt-5 text-center text-gray-600">
               Don't have an account?{' '}
               <a href="/register" className="text-mauve hover:underline">
