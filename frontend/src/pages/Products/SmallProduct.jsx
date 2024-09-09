@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
 
-const SmallProduct = ({ product }) => {
+const SmallProduct = ({product}) => {
   return (
     <div className="w-full sm:w-[20rem] mx-auto p-4">
       <div className="relative">

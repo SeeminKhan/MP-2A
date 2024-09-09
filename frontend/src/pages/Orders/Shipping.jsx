@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  saveShippingAddress,
-  savePaymentMethod,
-} from "../../redux/features/cart/cartSlice";
+import { saveShippingAddress, savePaymentMethod } from "../../redux/features/cart/cartSlice";
 import ProgressSteps from "../../components/ProgressSteps";
 
 const Shipping = () => {
@@ -14,9 +11,7 @@ const Shipping = () => {
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
-  const [postalCode, setPostalCode] = useState(
-    shippingAddress.postalCode || ""
-  );
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || "");
   const [country, setCountry] = useState(shippingAddress.country || "");
 
   const dispatch = useDispatch();
@@ -24,13 +19,11 @@ const Shipping = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
     dispatch(saveShippingAddress({ address, city, postalCode, country }));
     dispatch(savePaymentMethod(paymentMethod));
     navigate("/placeorder");
   };
 
-  // Payment
   useEffect(() => {
     if (!shippingAddress.address) {
       navigate("/shipping");
@@ -38,79 +31,93 @@ const Shipping = () => {
   }, [navigate, shippingAddress]);
 
   return (
-    <div className="container mx-auto mt-10">
+    <div className="w-full mt-[112px] px-4">
       <ProgressSteps step1 step2 />
-      <div className="mt-[10rem] flex justify-around items-center flex-wrap">
-        <form onSubmit={submitHandler} className="w-[40rem]">
-          <h1 className="text-2xl font-semibold mb-4">Shipping</h1>
-          <div className="mb-4">
-            <label className="block text-white mb-2">Address</label>
-            <input
-              type="text"
-              className="w-full p-2 border rounded"
-              placeholder="Enter address"
-              value={address}
-              required
-              onChange={(e) => setAddress(e.target.value)}
-            />
+      <div className="mt-8 flex justify-center items-center">
+        <form
+          onSubmit={submitHandler}
+          className="w-full p-6 bg-white shadow-md rounded-lg max-w-full"
+        >
+          <h1 className="text-3xl font-semibold mb-10 text-black text-center">
+            Shipping Address
+          </h1>
+
+          <div className="flex flex-wrap mb-6">
+            <div className="w-full md:w-1/2 px-2 mb-4">
+              <label className="block text-black mb-2">Address</label>
+              <input
+                type="text"
+                className="w-full p-3 border rounded-lg"
+                placeholder="Enter address"
+                value={address}
+                required
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+            <div className="w-full md:w-1/2 px-2 mb-4">
+              <label className="block text-black mb-2">City</label>
+              <input
+                type="text"
+                className="w-full p-3 border rounded-lg"
+                placeholder="Enter city"
+                value={city}
+                required
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-white mb-2">City</label>
-            <input
-              type="text"
-              className="w-full p-2 border rounded"
-              placeholder="Enter city"
-              value={city}
-              required
-              onChange={(e) => setCity(e.target.value)}
-            />
+
+          <div className="flex flex-wrap mb-6">
+            <div className="w-full md:w-1/2 px-2 mb-4">
+              <label className="block text-black mb-2">Postal Code</label>
+              <input
+                type="text"
+                className="w-full p-3 border rounded-lg"
+                placeholder="Enter postal code"
+                value={postalCode}
+                required
+                onChange={(e) => setPostalCode(e.target.value)}
+              />
+            </div>
+            <div className="w-full md:w-1/2 px-2 mb-4">
+              <label className="block text-black mb-2">Country</label>
+              <input
+                type="text"
+                className="w-full p-3 border rounded-lg"
+                placeholder="Enter country"
+                value={country}
+                required
+                onChange={(e) => setCountry(e.target.value)}
+              />
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-white mb-2">Postal Code</label>
-            <input
-              type="text"
-              className="w-full p-2 border rounded"
-              placeholder="Enter postal code"
-              value={postalCode}
-              required
-              onChange={(e) => setPostalCode(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-white mb-2">Country</label>
-            <input
-              type="text"
-              className="w-full p-2 border rounded"
-              placeholder="Enter country"
-              value={country}
-              required
-              onChange={(e) => setCountry(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-400">Select Method</label>
-            <div className="mt-2">
-              <label className="inline-flex items-center">
+
+          <div className="mb-6">
+            <label className="block text-black mb-2">Payment Method</label>
+            <div className="flex flex-wrap items-center px-2">
+              <label className="inline-flex items-center w-full">
                 <input
                   type="radio"
-                  className="form-radio text-black"
+                  className="form-radio"
                   name="paymentMethod"
                   value="PayPal"
                   checked={paymentMethod === "PayPal"}
                   onChange={(e) => setPaymentMethod(e.target.value)}
                 />
-
-                <span className="ml-2">PayPal or Credit Card</span>
+                <span className="ml-2 text-black">PayPal or Credit Card</span>
               </label>
             </div>
           </div>
 
-          <button
-            className="bg-black text-white py-2 px-4 rounded-full text-lg w-full"
-            type="submit"
-          >
-            Continue
-          </button>
+          <div className="flex justify-center">
+  <button
+    className="bg-black text-white py-3 px-4 rounded-full w-[120px] flex justify-center hover:bg-gray-700 transition duration-300"
+    type="submit"
+  >
+    Continue
+  </button>
+</div>
+
         </form>
       </div>
     </div>

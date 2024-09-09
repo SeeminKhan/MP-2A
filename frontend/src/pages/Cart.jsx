@@ -24,7 +24,7 @@ const Cart = () => {
 
   return (
     <>
-      <div className="container flex justify-around items-start flex-wrap mx-auto mt-8 text-black bg-white p-8 shadow-lg rounded-lg">
+      <div className="container flex justify-around items-start flex-wrap mx-auto mt-[112px] text-black bg-white p-8 shadow-lg rounded-lg">
         {cartItems.length === 0 ? (
           <div className="text-center text-lg text-stone-600">
             Your cart is empty{" "}
@@ -35,7 +35,7 @@ const Cart = () => {
         ) : (
           <>
             <div className="flex flex-col w-full md:w-[80%]">
-              <h1 className="text-2xl font-bold mb-6 text-stone-900">Shopping Cart</h1>
+              <h1 className="text-2xl font-bold mb-6 text-stone-900">Your Cart Items</h1>
 
               {cartItems.map((item) => (
                 <div

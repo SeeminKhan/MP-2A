@@ -74,7 +74,7 @@ const Shop = () => {
 
   return (
     <>
-      <div className="container mx-auto mt-8">
+      <div className="mt-[110px] container mx-auto ">
         <div className="flex flex-col md:flex-row">
           <div className="bg-white p-4 mt-4 mb-4 rounded-lg shadow-lg text-black">
             <h2 className="text-xl text-center py-3 bg-black text-white rounded-lg mb-4">

@@ -65,83 +65,83 @@ const Product = () => {
 
   return (
     <>
-      <div>
-        <Link
-          className="text-white font-semibold hover:underline ml-[10rem]"
-          to="/"
-        >
-          Go Back
-        </Link>
-      </div>
-      {isLoading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant="danger">
-          {error?.data?.message || error.error}
-        </Message>
-      ) : (
-        <>
-          <div className="flex flex-wrap relative items-between mt-[2rem] ml-[10rem]">
-            <div>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full  xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[2rem]"
-              />
-              <HeartIcon product={product} />
-            </div>
-            <div className="flex flex-col justify-between">
-              <h2 className="text-2xl font-semibold">{product.name}</h2>
+      <div className="mt-[112px]">
+        <div>
+          <Link
+            className="text-gray-700 font-semibold hover:underline ml-10"
+            to="/"
+          >
+            Go Back
+          </Link>
+        </div>
 
-              <p className="my-4 xl:w-[35rem] lg:w-[35] md:w-[30rem] text-[#B0B0B0]">
-                {product.description}
-              </p>
-              <p className="text-5xl my-4 font-extrabold">${product.price}</p>
-              {/* --------------------------------------------------- */}
-
-              <div className="flex items-center justify-between w-[20rem]">
-                <div className="one">
-                  <h1 className="flex items-center mb-6">
-                    <FaStore className="mr-2 text-white" /> Brand:{" "}
-                    {product.brand}
-                  </h1>
-                  <h1 className="flex items-center mb-6">
-                    <FaClock className="mr-2 text-white" /> Added:{" "}
-                    {moment(product.createdAt).fromNow()}
-                  </h1>
-                  <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> Reviews:
-                    {product.numReviews}
-                  </h1>
-                </div>
-
-                <div className="two">
-                  <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> Ratings: {rating}
-                  </h1>
-                  <h1 className="flex items-center mb-6">
-                    <FaShoppingCart className="mr-2 text-white" /> Quantity:{" "}
-                    {product.quantity}
-                  </h1>
-                  <h1 className="flex items-center mb-6">
-                    <FaBox className="mr-2 text-white" /> In Stock:{" "}
-                    {product.countInStock}
-                  </h1>
-                </div>
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <Message variant="danger">
+            {error?.data?.message || error.error}
+          </Message>
+        ) : (
+          <>
+            {/* Top Section: Product Image & Details */}
+            <div className="flex flex-col lg:flex-row mt-8 mx-10 space-y-8 lg:space-y-0 lg:space-x-10">
+              {/* Left: Product Image */}
+              <div className="w-full lg:w-1/2 relative">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-auto rounded-lg object-cover"
+                />
+                <HeartIcon product={product} className="absolute top-4 right-4" />
               </div>
 
-              <div className="flex justify-between flex-wrap">
-                <Rating
-                  value={product.rating}
-                  text={`${product.numReviews} reviews`}
-                />
+              {/* Right: Product Details */}
+              <div className="w-full lg:w-1/2 flex flex-col justify-between">
+                <h1 className="text-3xl font-semibold text-gray-800">
+                  {product.name}
+                </h1>
 
+                <p className="my-4 text-gray-600">{product.description}</p>
+
+                <p className="text-5xl font-extrabold text-black">${product.price}</p>
+
+                {/* Product Info */}
+                <div className="flex flex-col md:flex-row justify-between my-8 text-gray-700">
+                  <div className="space-y-4">
+                    <h1 className="flex items-center">
+                      <FaStore className="mr-2 text-gray-500" /> Brand: {product.brand}
+                    </h1>
+                    <h1 className="flex items-center">
+                      <FaClock className="mr-2 text-gray-500" /> Added:{" "}
+                      {moment(product.createdAt).fromNow()}
+                    </h1>
+                    <h1 className="flex items-center">
+                      <FaStar className="mr-2 text-gray-500" /> Reviews:{" "}
+                      {product.numReviews}
+                    </h1>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h1 className="flex items-center">
+                      <FaStar className="mr-2 text-gray-500" /> Ratings: {product.rating}
+                    </h1>
+                    <h1 className="flex items-center">
+                      <FaShoppingCart className="mr-2 text-gray-500" /> Quantity: {qty}
+                    </h1>
+                    <h1 className="flex items-center">
+                      <FaBox className="mr-2 text-gray-500" /> In Stock:{" "}
+                      {product.countInStock}
+                    </h1>
+                  </div>
+                </div>
+
+                {/* Add to Cart Section */}
                 {product.countInStock > 0 && (
-                  <div className="">
+                  <div className="flex items-center space-x-4 border">
                     <select
                       value={qty}
                       onChange={(e) => setQty(Number(e.target.value))}
-                      className="p-2 w-[6rem] rounded-lg text-black"
+                      className="p-2 rounded-lg text-black border border-gray-300"
                     >
                       {[...Array(product.countInStock).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
@@ -149,37 +149,35 @@ const Product = () => {
                         </option>
                       ))}
                     </select>
+
+                    <button
+                      onClick={addToCartHandler}
+                      className="bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300"
+                      disabled={product.countInStock === 0}
+                    >
+                      Add To Cart
+                    </button>
                   </div>
                 )}
               </div>
-
-              <div className="btn-container">
-                <button
-                  onClick={addToCartHandler}
-                  disabled={product.countInStock === 0}
-                  className="bg-black-600 text-black py-2 px-4 rounded-lg mt-4 md:mt-0"
-                >
-                  Add To Cart
-                </button>
-              </div>
-              {/* --------------------------------------------------- */}
             </div>
-          </div>
 
-          <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-[10rem]">
-            <ProductTabs
-              loadingProductReview={loadingProductReview}
-              userInfo={userInfo}
-              submitHandler={submitHandler}
-              rating={rating}
-              setRating={setRating}
-              comment={comment}
-              setComment={setComment}
-              product={product}
-            />
-          </div>
-        </>
-      )}
+            {/* Bottom Section: Reviews, Tabs, etc. */}
+            <div className="mt-16 mx-10">
+              <ProductTabs
+                loadingProductReview={loadingProductReview}
+                userInfo={userInfo}
+                submitHandler={submitHandler}
+                rating={rating}
+                setRating={setRating}
+                comment={comment}
+                setComment={setComment}
+                product={product}
+              />
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };

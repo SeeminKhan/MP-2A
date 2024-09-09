@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-
 import Loader from "../../components/Loader";
 import { useProfileMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
@@ -14,7 +13,6 @@ const Profile = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const { userInfo } = useSelector((state) => state.auth);
-
   const [updateProfile, { isLoading: loadingUpdateProfile }] =
     useProfileMutation();
 
@@ -46,66 +44,66 @@ const Profile = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 mt-[10rem]">
-      <div className="flex justify-center align-center md:flex md:space-x-4">
-        <div className="md:w-1/3">
-          <h2 className="text-2xl font-semibold mb-4">Update Profile</h2>
-          <form onSubmit={submitHandler}>
-            <div className="mb-4">
-              <label className="block text-white mb-2">Name</label>
+    <div className="container mx-auto px-6 py-12 mt-[10rem]">
+      <div className="bg-white shadow-lg rounded-lg max-w-lg mx-auto p-8 md:flex md:space-x-8">
+        <div className="w-full">
+          <h2 className="text-3xl font-bold mb-6 text-stone-900 text-center">Update Profile</h2>
+          <form onSubmit={submitHandler} className="space-y-6">
+            <div>
+              <label className="block text-stone-600 mb-2">Name</label>
               <input
                 type="text"
                 placeholder="Enter name"
-                className="form-input p-4 rounded-sm w-full"
+                className="p-3 border rounded-lg w-full focus:border-black"
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
               />
             </div>
 
-            <div className="mb-4">
-              <label className="block text-white mb-2">Email Address</label>
+            <div>
+              <label className="block text-stone-600 mb-2">Email Address</label>
               <input
                 type="email"
                 placeholder="Enter email"
-                className="form-input p-4 rounded-sm w-full"
+                className="p-3 border rounded-lg w-full focus:border-black"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
-            <div className="mb-4">
-              <label className="block text-white mb-2">Password</label>
+            <div>
+              <label className="block text-stone-600 mb-2">Password</label>
               <input
                 type="password"
                 placeholder="Enter password"
-                className="form-input p-4 rounded-sm w-full"
+                className="p-3 border rounded-lg w-full focus:border-black"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
-            <div className="mb-4">
-              <label className="block text-white mb-2">Confirm Password</label>
+            <div>
+              <label className="block text-stone-600 mb-2">Confirm Password</label>
               <input
                 type="password"
                 placeholder="Confirm password"
-                className="form-input p-4 rounded-sm w-full"
+                className="p-3 border rounded-lg w-full focus:border-black"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center mt-6">
               <button
                 type="submit"
-                className="bg-black text-white py-2 px-4 rounded hover:bg-black-600"
+                className="bg-black text-white py-2 px-6 rounded-lg hover:bg-stone-800 transition duration-300"
               >
                 Update
               </button>
 
               <Link
-                to="/user-orders"
-                className="bg-black-600 text-white py-2 px-4 rounded hover:bg-black-700"
+                to="/order/:id"
+                className="text-black py-2 px-6 rounded-lg border border-stone-300 hover:bg-stone-100 transition duration-300"
               >
                 My Orders
               </Link>
