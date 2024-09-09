@@ -7,7 +7,6 @@ import {
 } from "../../redux/api/orderApiSlice";
 
 import { useState, useEffect } from "react";
-import AdminMenu from "./AdminMenu";
 import OrderList from "./OrderList";
 import Loader from "../../components/Loader";
 
@@ -21,26 +20,32 @@ const AdminDashboard = () => {
     options: {
       chart: {
         type: "line",
+        toolbar: {
+          show: false,
+        },
       },
       tooltip: {
         theme: "dark",
       },
       colors: ["#00E396"],
       dataLabels: {
-        enabled: true,
+        enabled: false,
       },
       stroke: {
         curve: "smooth",
+        width: 2,
       },
       title: {
         text: "Sales Trend",
         align: "left",
+        style: {
+          fontSize: "20px",
+          fontWeight: "bold",
+          color: "#333",
+        },
       },
       grid: {
-        borderColor: "#ccc",
-      },
-      markers: {
-        size: 1,
+        borderColor: "#f1f1f1",
       },
       xaxis: {
         categories: [],
@@ -53,13 +58,6 @@ const AdminDashboard = () => {
           text: "Sales",
         },
         min: 0,
-      },
-      legend: {
-        position: "top",
-        horizontalAlign: "right",
-        floating: true,
-        offsetY: -25,
-        offsetX: -5,
       },
     },
     series: [{ name: "Sales", data: [] }],
@@ -87,50 +85,51 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <AdminMenu />
-
-      <section className="xl:ml-[4rem] md:ml-[0rem]">
-        <div className="w-[80%] flex justify-around flex-wrap">
-          <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-            <div className="font-bold rounded-full w-[3rem] bg-stone-500 text-center p-3">
-              $
+      <section className="mt-[112px] p-4">
+        <div className="flex flex-col lg:flex-row gap-4">
+          <div className="lg:w-1/3 w-full flex flex-col gap-4">
+            <div className="rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 p-5 shadow-lg flex items-center">
+              <div className="font-bold rounded-full w-[3rem] bg-stone-500 text-center p-3">
+                $
+              </div>
+              <div className="ml-4">
+                <p className="text-gray-300">Sales</p>
+                <h1 className="text-2xl font-bold text-white">
+                  {loadingSales ? <Loader /> : `$${sales.totalSales.toFixed(2)}`}
+                </h1>
+              </div>
             </div>
-            <p className="mt-5">Sales</p>
-            <h1 className="text-xl font-bold">
-              {loadingSales ? <Loader /> : `$${sales.totalSales.toFixed(2)}`}
-            </h1>
-          </div>
-          <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-            <div className="font-bold rounded-full w-[3rem] bg-stone-500 text-center p-3">
-              👥
+            <div className="rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 p-5 shadow-lg flex items-center">
+              <div className="font-bold rounded-full w-[3rem] bg-stone-500 text-center p-3">
+                👥
+              </div>
+              <div className="ml-4">
+                <p className="text-gray-300">Customers</p>
+                <h1 className="text-2xl font-bold text-white">
+                  {loadingCustomers ? <Loader /> : customers?.length}
+                </h1>
+              </div>
             </div>
-            <p className="mt-5">Customers</p>
-            <h1 className="text-xl font-bold">
-              {loadingCustomers ? <Loader /> : customers?.length}
-            </h1>
-          </div>
-          <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-            <div className="font-bold rounded-full w-[3rem] bg-stone-500 text-center p-3">
-              📦
+            <div className="rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 p-5 shadow-lg flex items-center">
+              <div className="font-bold rounded-full w-[3rem] bg-stone-500 text-center p-3">
+                📦
+              </div>
+              <div className="ml-4">
+                <p className="text-gray-300">All Orders</p>
+                <h1 className="text-2xl font-bold text-white">
+                  {loadingOrders ? <Loader /> : orders?.totalOrders}
+                </h1>
+              </div>
             </div>
-            <p className="mt-5">All Orders</p>
-            <h1 className="text-xl font-bold">
-              {loadingOrders ? <Loader /> : orders?.totalOrders}
-            </h1>
           </div>
-        </div>
-
-        <div className="ml-[10rem] mt-[4rem]">
-          <Chart
-            options={state.options}
-            series={state.series}
-            type="line"  // Changed to match chart options
-            width="70%"
-          />
-        </div>
-
-        <div className="mt-[4rem]">
-          <OrderList />
+          <div className="lg:w-2/3 w-full">
+            <Chart
+              options={state.options}
+              series={state.series}
+              type="line"
+              width="100%"
+            />
+          </div>
         </div>
       </section>
     </>

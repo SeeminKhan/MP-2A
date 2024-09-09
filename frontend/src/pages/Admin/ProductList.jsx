@@ -6,10 +6,9 @@ import {
 } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 import { toast } from "react-toastify";
-import AdminMenu from "./AdminMenu";
 
 const ProductList = () => {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -18,6 +17,7 @@ const ProductList = () => {
   const [brand, setBrand] = useState("");
   const [stock, setStock] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   const [uploadProductImage] = useUploadProductImageMutation();
@@ -26,11 +26,12 @@ const ProductList = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!name || !price || !description || !category || !quantity || !brand) {
+    if (!name || !price || !description || !category || !quantity || !brand || stock < 0) {
       toast.error("Please fill in all required fields");
       return;
     }
+
+    setIsSubmitting(true);
 
     try {
       const productData = new FormData();
@@ -43,23 +44,20 @@ const ProductList = () => {
       productData.append("brand", brand);
       productData.append("countInStock", stock);
 
-      const { data } = await createProduct(productData);
+      const { data } = await createProduct(productData).unwrap();
 
-      if (data.error) {
-        toast.error("Product creation failed. Try again.");
-      } else {
-        toast.success(`${data.name} is created`);
-        navigate("/admin/dashboard");
-      }
+      toast.success(`${data.name} is created`);
+      navigate("/admin/dashboard");
     } catch (error) {
       console.error(error);
       toast.error("Product creation failed. Try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
-    
     if (file.size > 1024 * 1024 * 2) { // 2MB limit
       toast.error("File size exceeds 2MB");
       return;
@@ -70,116 +68,130 @@ const ProductList = () => {
 
     try {
       const res = await uploadProductImage(formData).unwrap();
-      toast.success(res.message);
+      toast.success("Image uploaded successfully");
       setImage(res.image);
       setImageUrl(res.image);
     } catch (error) {
-      toast.error(error?.data?.message || error.error);
+      toast.error("Image upload failed. Try again.");
     }
   };
 
   return (
-    <div className="container xl:mx-[9rem] sm:mx-[0]">
+    <div className="mt-[112px] container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row">
-        <AdminMenu />
-        <div className="md:w-3/4 p-3">
-          <div className="h-12 text-2xl font-bold">Create Product</div>
+        <div className="md:w-3/4 p-3 bg-white">
+          <h2 className="text-2xl font-bold mb-4">Create Product</h2>
 
           {imageUrl && (
-            <div className="text-center">
+            <div className="text-center mb-4">
               <img
                 src={imageUrl}
                 alt="product"
-                className="block mx-auto max-h-[200px]"
+                className="block mx-auto max-h-[200px] object-cover rounded-lg shadow-md"
               />
             </div>
           )}
 
-          <div className="mb-3">
-            <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+          <div className="mb-4">
+            <label className="block mb-2 px-4 py-2 text-center cursor-pointer bg-gray-200 rounded-lg font-bold">
               {image ? image.name : "Upload Image"}
               <input
                 type="file"
                 name="image"
                 accept="image/*"
                 onChange={uploadFileHandler}
-                className={!image ? "hidden" : "text-white"}
+                className="hidden"
               />
             </label>
           </div>
 
-          <div className="p-3">
-            <div className="flex flex-wrap">
-              <div className="one">
-                <label htmlFor="name">Name</label> <br />
+          <form onSubmit={handleSubmit}>
+            <div className="flex flex-wrap mb-4">
+              <div className="w-full md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                <label htmlFor="name" className="block mb-2 text-gray-700">Name</label>
                 <input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  id="name"
+                  className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  placeholder="Product Name"
                 />
               </div>
-              <div className="two ml-10">
-                <label htmlFor="price">Price</label> <br />
+
+              <div className="w-full md:w-1/2 md:pl-4">
+                <label htmlFor="price" className="block mb-2 text-gray-700">Price</label>
                 <input
                   type="number"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  id="price"
+                  className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
+                  placeholder="Product Price"
                 />
               </div>
             </div>
 
-            <div className="flex flex-wrap">
-              <div className="one">
-                <label htmlFor="quantity">Quantity</label> <br />
+            <div className="flex flex-wrap mb-4">
+              <div className="w-full md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                <label htmlFor="quantity" className="block mb-2 text-gray-700">Quantity</label>
                 <input
                   type="number"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  id="quantity"
+                  className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
+                  placeholder="Product Quantity"
                 />
               </div>
-              <div className="two ml-10">
-                <label htmlFor="brand">Brand</label> <br />
+
+              <div className="w-full md:w-1/2 md:pl-4">
+                <label htmlFor="brand" className="block mb-2 text-gray-700">Brand</label>
                 <input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  id="brand"
+                  className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
+                  placeholder="Product Brand"
                 />
               </div>
             </div>
 
-            <label htmlFor="description" className="my-5">
-              Description
-            </label>
-            <textarea
-              type="text"
-              className="p-2 mb-3 bg-[#101011] border rounded-lg w-[95%] text-white"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
+            <div className="mb-4">
+              <label htmlFor="description" className="block mb-2 text-gray-700">Description</label>
+              <textarea
+                id="description"
+                className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Product Description"
+              ></textarea>
+            </div>
 
-            <div className="flex justify-between">
-              <div>
-                <label htmlFor="stock">Count In Stock</label> <br />
+            <div className="flex flex-wrap mb-4">
+              <div className="w-full md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                <label htmlFor="stock" className="block mb-2 text-gray-700">Count In Stock</label>
                 <input
                   type="number"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  id="stock"
+                  className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
                   value={stock}
                   onChange={(e) => setStock(e.target.value)}
                   min="0"
+                  placeholder="Count In Stock"
                 />
               </div>
 
-              <div>
-                <label htmlFor="category">Category</label> <br />
+              <div className="w-full md:w-1/2 md:pl-4">
+                <label htmlFor="category" className="block mb-2 text-gray-700">Category</label>
                 {isLoading ? (
                   <p>Loading categories...</p>
                 ) : (
                   <select
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                    id="category"
+                    className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
+                    value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
                     <option value="">Select Category</option>
@@ -194,12 +206,13 @@ const ProductList = () => {
             </div>
 
             <button
-              onClick={handleSubmit}
-              className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-black-600"
+              type="submit"
+              className={`py-4 px-10 rounded-lg text-lg font-bold ${isSubmitting ? "bg-gray-400" : "bg-black-600"} text-white`}
+              disabled={isSubmitting}
             >
-              Submit
+              {isSubmitting ? "Submitting..." : "Submit"}
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>

@@ -5,11 +5,10 @@ import {
   useDeleteCategoryMutation,
   useFetchCategoriesQuery,
 } from "../../redux/api/categoryApiSlice";
-
 import { toast } from "react-toastify";
 import CategoryForm from "../../components/CategoryForm";
 import Modal from "../../components/Modal";
-import AdminMenu from "./AdminMenu";
+// import AdminMenu from "./AdminMenu";
 
 const CategoryList = () => {
   const { data: categories } = useFetchCategoriesQuery();
@@ -86,34 +85,32 @@ const CategoryList = () => {
       }
     } catch (error) {
       console.error(error);
-      toast.error("Category delection failed. Tray again.");
+      toast.error("Category deletion failed. Try again.");
     }
   };
 
   return (
-    <div className="ml-[10rem] flex flex-col md:flex-row">
-      <AdminMenu />
-      <div className="md:w-3/4 p-3">
-        <div className="h-12">Manage Categories</div>
+    <div className="mt-[112px] h-screen p-5 md:p-10 flex flex-col md:flex-row">
+      {/* <AdminMenu /> */}
+      <div className="md:w-3/4 p-5">
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">Manage Categories</h2>
         <CategoryForm
           value={name}
           setValue={setName}
           handleSubmit={handleCreateCategory}
+          buttonText="Add Category"
         />
-        <br />
-        <hr />
+        <hr className="my-4 border-gray-300" />
 
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap gap-4 p-5">
           {categories?.map((category) => (
-            <div key={category._id}>
+            <div key={category._id} className="flex-shrink-0">
               <button
-                className="bg-white border border-pink-500 text-black py-2 px-4 rounded-lg m-3 hover:bg-black hover:text-white focus:outline-none foucs:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
+                className="bg-white border border-gray-300 text-gray-800 py-2 px-4 rounded-lg shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
                 onClick={() => {
-                  {
-                    setModalVisible(true);
-                    setSelectedCategory(category);
-                    setUpdatingName(category.name);
-                  }
+                  setModalVisible(true);
+                  setSelectedCategory(category);
+                  setUpdatingName(category.name);
                 }}
               >
                 {category.name}
@@ -125,7 +122,7 @@ const CategoryList = () => {
         <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
           <CategoryForm
             value={updatingName}
-            setValue={(value) => setUpdatingName(value)}
+            setValue={setUpdatingName}
             handleSubmit={handleUpdateCategory}
             buttonText="Update"
             handleDelete={handleDeleteCategory}
