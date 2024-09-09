@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 body {
-  background: #ffff;
+  font-family: 'Open Sans', 'Lora', serif;
+  background: #ffffff;
   color: #070707;
 }
+
 
 input,
 textarea {

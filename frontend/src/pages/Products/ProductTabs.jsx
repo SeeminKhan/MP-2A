@@ -100,7 +100,7 @@ const ProductTabs = ({
                 <button
                   type="submit"
                   disabled={loadingProductReview}
-                  className="bg-black-600 text-white py-2 px-4 rounded-lg"
+                  className="bg-black text-white py-2 px-4 rounded-lg"
                 >
                   Submit
                 </button>

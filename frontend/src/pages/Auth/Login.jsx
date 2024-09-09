@@ -5,6 +5,7 @@ import Loader from "../../components/Loader";
 import { useLoginMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
+import Img from "./loginImg.jpeg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -31,7 +32,6 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await login({ email, password }).unwrap();
-      console.log(res);
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
     } catch (err) {
@@ -40,50 +40,70 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <section className="pl-[10rem] flex flex-wrap">
-        <div className="mr-[4rem] mt-[5rem]">
-          <h1 className="text-2xl font-semibold mb-4">Sign In</h1>
+    <div className="mt-[112px] flex">
+      {/* Left Image Section */}
+      <div className="w-1/2 hidden md:flex items-center justify-center pl-8">
+        <img
+          src={Img}
+          alt="Login visual"
+          className="h-full object-cover rounded-l-lg"
+        />
+      </div>
 
-          <form onSubmit={submitHandler} className="container w-[40rem]">
-            <div className="my-[2rem]">
+      {/* Right Form Section */}
+      <div className="w-full md:w-1/2 flex items-center justify-center bg-white p-8">
+        <div className="max-w-lg w-full space-y-8">
+          <h1 className="text-4xl font-bold text-black mb-4">Sign In</h1>
+
+          <form onSubmit={submitHandler} className="space-y-6">
+            <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Email Address
               </label>
               <input
                 type="email"
                 id="email"
-                className="mt-1 p-2 border rounded w-full"
+                className="mt-2 p-3 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-black"
                 placeholder="Enter email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
-            <div className="mb-4">
+            <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Password
               </label>
               <input
                 type="password"
                 id="password"
-                className="mt-1 p-2 border rounded w-full"
+                className="mt-2 p-3 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-black"
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
+            {/* Forgot Password Link */}
+            <div className="flex justify-end">
+              <Link
+                to="/forgot-password"
+                className="text-sm text-gray-600 hover:text-black hover:underline"
+              >
+                Forgot Password?
+              </Link>
+            </div>
+
             <button
               disabled={isLoading}
               type="submit"
-              className="bg-black text-white px-4 py-2 rounded cursor-pointer my-[1rem]"
+              className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-all"
             >
               {isLoading ? "Signing In..." : "Sign In"}
             </button>
@@ -91,8 +111,8 @@ const Login = () => {
             {isLoading && <Loader />}
           </form>
 
-          <div className="mt-4">
-            <p className="text-white">
+          <div className="text-center mt-6">
+            <p className="text-gray-600">
               New Customer?{" "}
               <Link
                 to={redirect ? `/register?redirect=${redirect}` : "/register"}
@@ -103,12 +123,7 @@ const Login = () => {
             </p>
           </div>
         </div>
-        <img
-          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80"
-          alt=""
-          className="h-[65rem] w-[59%] xl:block md:hidden sm:hidden rounded-lg"
-        />
-      </section>
+      </div>
     </div>
   );
 };

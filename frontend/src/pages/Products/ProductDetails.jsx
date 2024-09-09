@@ -68,7 +68,7 @@ const ProductDetails = () => {
       <div>
         <Link
           to="/"
-          className="text-white font-semibold hover:underline ml-[10rem]"
+          className="text-black font-semibold hover:underline ml-[10rem]"
         >
           Go Back
         </Link>
@@ -104,15 +104,15 @@ const ProductDetails = () => {
               <div className="flex items-center justify-between w-[20rem]">
                 <div className="one">
                   <h1 className="flex items-center mb-6">
-                    <FaStore className="mr-2 text-white" /> Brand:{" "}
+                    <FaStore className="mr-2 text-black" /> Brand:{" "}
                     {product.brand}
                   </h1>
                   <h1 className="flex items-center mb-6 w-[20rem]">
-                    <FaClock className="mr-2 text-white" /> Added:{" "}
+                    <FaClock className="mr-2 text-black" /> Added:{" "}
                     {moment(product.createAt).fromNow()}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> Reviews:{" "}
+                    <FaStar className="mr-2 text-black" /> Reviews:{" "}
                     {product.numReviews}
                   </h1>
                 </div>
@@ -159,7 +159,7 @@ const ProductDetails = () => {
                 <button
                   onClick={addToCartHandler}
                   disabled={product.countInStock === 0}
-                  className="bg-black-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0"
+                  className="bg-black-600 text-black py-2 px-4 rounded-lg mt-4 md:mt-0"
                 >
                   Add To Cart
                 </button>

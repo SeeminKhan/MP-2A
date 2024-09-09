@@ -93,9 +93,6 @@ const Navigation = () => {
             </button>
           ) : (
             <div className="flex space-x-4">
-              <Link to="/login" className="transition-transform hover:translate-y-1">
-                <AiOutlineLogin size={24} />
-              </Link>
               <Link to="/register" className="transition-transform hover:translate-y-1">
                 <AiOutlineUserAdd size={24} />
               </Link>
@@ -111,23 +108,28 @@ const Navigation = () => {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/admin/productlist" className="block px-4 py-2 hover:bg-gray-100">
+                      Create Product
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/admin/allproductslist" className="block px-4 py-2 hover:bg-gray-100">
+                      Manage Products
+                    </Link>
+                  </li>
+                  <li>
                     <Link to="/admin/categorylist" className="block px-4 py-2 hover:bg-gray-100">
-                      Category
+                      Create Category
                     </Link>
                   </li>
                   <li>
                     <Link to="/admin/orderlist" className="block px-4 py-2 hover:bg-gray-100">
-                      Orders
+                      Manage Orders
                     </Link>
                   </li>
                   <li>
                     <Link to="/admin/userlist" className="block px-4 py-2 hover:bg-gray-100">
-                      Users
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/productlist" className="block px-4 py-2 hover:bg-gray-100">
-                      Products
+                      Manage Users
                     </Link>
                   </li>
                 </>
