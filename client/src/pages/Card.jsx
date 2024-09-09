@@ -1,17 +1,23 @@
-export default function Card({src}) {
-    return (
-        <div>
-            <div className="bg-white text-blue p-8 rounded-lg shadow-md">
-            <img
-              src={src}
-              className="mb-6 w-full h-48 object-cover rounded-lg"
-            />
-            <h3 className="text-xl font-semibold mb-4 text-beigeWhite">Feature 1</h3>
-            <p className="text-beigeWhite mb-4">Description of Feature 1.</p>
-            <button className="bg-beigeWhite text-customPink py-2 px-4 rounded-full">
-              Learn More
-            </button>
-          </div>
-        </div>
-    );
-}
+import React from 'react';
+
+const Card = ({src}) => {
+  return (
+    <div className="relative w-[350px] h-[500px] overflow-hidden">
+      <div className="w-full h-full">
+        <img 
+          src={src} 
+          alt="Spring Hue" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="absolute bottom-8 left-8 text-white">
+        <h2 className="text-2xl font-bold tracking-wider">SPRING HUE</h2>
+        <button className="mt-4 px-6 py-2 bg-white text-black text-sm font-medium tracking-wider hover:bg-black hover:text-white transition-all">
+          VIEW COLLECTION
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Card;
