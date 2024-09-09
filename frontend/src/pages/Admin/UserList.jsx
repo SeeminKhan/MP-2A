@@ -58,7 +58,7 @@ const UserList = () => {
 
   return (
     <div className="mt-[112px] p-4 h-screen">
-      <h1 className="text-2xl font-semibold mb-4 text-gray-800">Users</h1>
+      <h1 className="text-2xl font-semibold mb-4 text-gray-800">Your Users</h1>
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -75,7 +75,7 @@ const UserList = () => {
                 <th className="px-4 py-2 text-left text-gray-700">NAME</th>
                 <th className="px-4 py-2 text-left text-gray-700">EMAIL</th>
                 <th className="px-4 py-2 text-left text-gray-700">ADMIN</th>
-                <th className="px-4 py-2"></th>
+                <th className="px-4 py-2 text-left text-gray-700">ACTIONS</th>
               </tr>
             </thead>
             <tbody>
@@ -149,7 +149,7 @@ const UserList = () => {
                       <FaTimes className="text-red-500" />
                     )}
                   </td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 text-center">
                     {!user.isAdmin && (
                       <button
                         onClick={() => deleteHandler(user._id)}

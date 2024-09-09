@@ -44,11 +44,14 @@ const Profile = () => {
   };
 
   return (
-    <div className="container mx-auto px-6 py-12 mt-[10rem]">
-      <div className="bg-white shadow-lg rounded-lg max-w-lg mx-auto p-8 md:flex md:space-x-8">
-        <div className="w-full">
-          <h2 className="text-3xl font-bold mb-6 text-stone-900 text-center">Update Profile</h2>
-          <form onSubmit={submitHandler} className="space-y-6">
+    <div className="container mx-auto mt-[110px] px-6 py-6 max-w-4xl">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-full">
+        <h2 className="text-3xl font-bold mb-8 text-stone-900 text-center">
+          Update Profile
+        </h2>
+        <form onSubmit={submitHandler} className="space-y-6">
+          {/* Name and Email in one row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-stone-600 mb-2">Name</label>
               <input
@@ -70,7 +73,10 @@ const Profile = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+          </div>
 
+          {/* Password and Confirm Password in separate lines */}
+          <div className="grid grid-cols-1 gap-6">
             <div>
               <label className="block text-stone-600 mb-2">Password</label>
               <input
@@ -92,25 +98,26 @@ const Profile = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
+          </div>
 
-            <div className="flex justify-between items-center mt-6">
-              <button
-                type="submit"
-                className="bg-black text-white py-2 px-6 rounded-lg hover:bg-stone-800 transition duration-300"
-              >
-                Update
-              </button>
+          <div className="flex flex-col md:flex-row justify-between items-center mt-6 gap-4">
+            <button
+              type="submit"
+              className="bg-black text-white py-3 px-6 rounded-lg hover:bg-stone-800 transition duration-300 w-full md:w-auto"
+            >
+              Update
+            </button>
 
-              <Link
-                to="/order/:id"
-                className="text-black py-2 px-6 rounded-lg border border-stone-300 hover:bg-stone-100 transition duration-300"
-              >
-                My Orders
-              </Link>
-            </div>
-            {loadingUpdateProfile && <Loader />}
-          </form>
-        </div>
+            <Link
+              to="/order/:id"
+              className="bg-transparent border border-black text-black py-3 px-6 rounded-lg hover:bg-stone-100 transition duration-300 w-full md:w-auto text-center"
+            >
+              My Orders
+            </Link>
+          </div>
+
+          {loadingUpdateProfile && <Loader />}
+        </form>
       </div>
     </div>
   );

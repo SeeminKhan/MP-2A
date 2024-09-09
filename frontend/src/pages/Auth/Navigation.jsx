@@ -4,15 +4,13 @@ import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  AiOutlineHome,
-  AiOutlineShopping,
-  AiOutlineLogin,
-  AiOutlineUserAdd,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
-import { FaHeart } from "react-icons/fa";
+  ShoppingCart as ShoppingCartIcon,
+  Favorite as FavoriteIcon,
+  PersonAdd as PersonAddIcon,
+  AccountCircle as AccountCircleIcon,
+  ArrowDropDown as ArrowDropDownIcon,
+} from "@mui/icons-material";
 import FavoritesCount from "../Products/FavoritesCount";
-import "./Navigation.css";
 
 const Navigation = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -57,94 +55,123 @@ const Navigation = () => {
           scrolling ? "bg-white text-black" : "bg-transparent text-black"
         }`}
       >
-        <div className="flex items-center justify-center">
-          <span className="text-3xl font-bold">Sharmeena Kariyaniya</span>
+        <div className="flex-grow flex items-center justify-center">
+          <span className="text-3xl font-extrabold">Sharmeena Kariyaniya</span>
         </div>
-        <div className="flex space-x-6">
-          <Link to="/cart" className="flex items-center relative transition-transform hover:translate-y-1">
-            <AiOutlineShoppingCart size={24} />
+        <div className="flex items-center space-x-6">
+          <Link
+            to="/cart"
+            className="relative flex items-center transition-transform hover:translate-y-1"
+          >
+            <ShoppingCartIcon />
             {cartItems.length > 0 && (
-              <span className="absolute top-0 right-0 bg-black text-white rounded-full px-2 py-1 text-xs">
+              <span className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full">
                 {cartItems.reduce((a, c) => a + c.qty, 0)}
               </span>
             )}
           </Link>
-          <Link to="/favorite" className="flex items-center transition-transform hover:translate-y-1">
-            <FaHeart size={24} />
+
+          <Link
+            to="/favorite"
+            className="relative flex items-center transition-transform hover:translate-y-1"
+          >
+            <FavoriteIcon />
             <FavoritesCount />
           </Link>
           {userInfo ? (
-            <button onClick={toggleDropdown} className="flex items-center text-gray-300">
-              <span>{userInfo.username}</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className={`h-4 w-4 ml-1 ${dropdownOpen ? "rotate-180" : ""}`}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
+            <div className="relative">
+              <button
+                onClick={toggleDropdown}
+                className="flex items-center text-black"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
+                <AccountCircleIcon />
+                <span className="ml-2">{userInfo.username}</span>
+                <ArrowDropDownIcon
+                  className={`transition-transform ${
+                    dropdownOpen ? "rotate-180" : ""
+                  }`}
                 />
-              </svg>
-            </button>
-          ) : (
-            <div className="flex space-x-4">
-              <Link to="/register" className="transition-transform hover:translate-y-1">
-                <AiOutlineUserAdd size={24} />
-              </Link>
-            </div>
-          )}
-          {dropdownOpen && userInfo && (
-            <ul className="absolute right-0 mt-2 w-40 bg-white text-black text-xl font-semibold shadow-lg rounded-md">
-              {userInfo.isAdmin && (
-                <>
+              </button>
+              {dropdownOpen && (
+                <ul className="absolute right-0 mt-2 w-48 bg-white text-black text-sm font-medium shadow-lg rounded-md">
+                  {userInfo.isAdmin && (
+                    <>
+                      <li>
+                        <Link
+                          to="/admin/dashboard"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Dashboard
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/admin/categorylist"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Create Category
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/admin/productlist"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Create Product
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/admin/allproductslist"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Manage Products
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/admin/orderlist"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Manage Orders
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/admin/userlist"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Manage Users
+                        </Link>
+                      </li>
+                    </>
+                  )}
                   <li>
-                    <Link to="/admin/dashboard" className="block px-4 py-2 hover:bg-gray-100">
-                      Dashboard
+                    <Link
+                      to="/profile"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      Profile
                     </Link>
                   </li>
                   <li>
-                    <Link to="/admin/productlist" className="block px-4 py-2 hover:bg-gray-100">
-                      Create Product
-                    </Link>
+                    <button
+                      onClick={logoutHandler}
+                      className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                    >
+                      Logout
+                    </button>
                   </li>
-                  <li>
-                    <Link to="/admin/allproductslist" className="block px-4 py-2 hover:bg-gray-100">
-                      Manage Products
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/categorylist" className="block px-4 py-2 hover:bg-gray-100">
-                      Create Category
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/orderlist" className="block px-4 py-2 hover:bg-gray-100">
-                      Manage Orders
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/userlist" className="block px-4 py-2 hover:bg-gray-100">
-                      Manage Users
-                    </Link>
-                  </li>
-                </>
+                </ul>
               )}
-              <li>
-                <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">
-                  Profile
-                </Link>
-              </li>
-              <li>
-                <button onClick={logoutHandler} className="block w-full text-left px-4 py-2 hover:bg-gray-100">
-                  Logout
-                </button>
-              </li>
-            </ul>
+            </div>
+          ) : (
+            <Link
+              to="/register"
+              className="transition-transform hover:translate-y-1"
+            >
+              <PersonAddIcon />
+            </Link>
           )}
         </div>
       </div>
@@ -154,18 +181,30 @@ const Navigation = () => {
           scrolling ? "bg-white text-black" : "bg-transparent text-black"
         }`}
       >
-        <div className="flex space-x-6">
-          <Link to="/" className="transition-transform hover:translate-y-1">
-            HOME
+        <div className="text-xl font-semibold flex space-x-6">
+          <Link
+            to="/"
+            className="flex items-center transition-transform hover:translate-y-1"
+          >
+            <span className="ml-2">HOME</span>
           </Link>
-          <Link to="/shop" className="transition-transform hover:translate-y-1">
-            SHOP
+          <Link
+            to="/shop"
+            className="flex items-center transition-transform hover:translate-y-1"
+          >
+            <span className="ml-2">SHOP</span>
           </Link>
-          <Link to="/collection" className="transition-transform hover:translate-y-1">
-            COLLECTION
+          <Link
+            to="/collection"
+            className="flex items-center transition-transform hover:translate-y-1"
+          >
+            <span className="ml-2">COLLECTION</span>
           </Link>
-          <Link to="/about" className="transition-transform hover:translate-y-1">
-            ABOUT
+          <Link
+            to="/about"
+            className="flex items-center transition-transform hover:translate-y-1"
+          >
+            <span className="ml-2">ABOUT</span>
           </Link>
         </div>
       </div>

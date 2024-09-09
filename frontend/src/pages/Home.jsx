@@ -1,17 +1,25 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetProductsQuery } from "../redux/api/productApiSlice";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import Header from "../components/Header";
+import Slider from "./Products/ProductCarousel";
 import Product from "./Products/Product";
 
 const Home = () => {
   const { keyword } = useParams();
   const { data, isLoading, isError } = useGetProductsQuery({ keyword });
 
+  // Dummy image URLs for the slider
+  const sliderImages = [
+    "https://via.placeholder.com/1500x500?text=Image+1",
+    "https://via.placeholder.com/1500x500?text=Image+2",
+    "https://via.placeholder.com/1500x500?text=Image+3",
+  ];
+
   return (
     <>
-      {!keyword ? <Header /> : null}
+      <Slider images={sliderImages} />
+
       {isLoading ? (
         <Loader />
       ) : isError ? (
@@ -20,25 +28,18 @@ const Home = () => {
         </Message>
       ) : (
         <>
-          <div className="flex justify-between items-center p-6 bg-white shadow-md rounded-lg">
-            <h1 className="text-3xl font-bold text-black">
-              Special Products
+          <div className="flex flex-col items-center py-6 rounded-lg mt-6 max-w-screen-lg mx-auto">
+            <h1 className="text-3xl font-bold text-black mb-6 text-center">
+              Our Special Products
             </h1>
 
-            <Link
-              to="/shop"
-              className="bg-black text-white font-bold rounded-full py-2 px-6 shadow-md hover:bg-gray-800"
-            >
-              Shop
-            </Link>
-          </div>
-
-          <div className="flex justify-center flex-wrap mt-6 p-6">
-            {data.products.map((product) => (
-              <div key={product._id} className="p-3">
-                <Product product={product} />
-              </div>
-            ))}
+            <div className="flex flex-wrap justify-center gap-6">
+              {data.products.slice(0, 3).map((product) => (
+                <div key={product._id} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
+                  <Product product={product} />
+                </div>
+              ))}
+            </div>
           </div>
         </>
       )}

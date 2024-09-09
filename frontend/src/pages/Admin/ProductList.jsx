@@ -77,23 +77,23 @@ const ProductList = () => {
   };
 
   return (
-    <div className="mt-[112px] container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-3/4 p-3 bg-white">
-          <h2 className="text-2xl font-bold mb-4">Create Product</h2>
+    <div className="mt-[112px] w-full px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col md:flex-row w-full">
+        <div className="md:w-3/4 p-4 rounded-lg mx-auto">
+          <h2 className="text-2xl font-bold mb-4 text-black">Create Product</h2>
 
           {imageUrl && (
             <div className="text-center mb-4">
               <img
                 src={imageUrl}
                 alt="product"
-                className="block mx-auto max-h-[200px] object-cover rounded-lg shadow-md"
+                className="block mx-auto max-h-[200px] object-cover rounded-lg shadow-md border border-gray-300"
               />
             </div>
           )}
 
           <div className="mb-4">
-            <label className="block mb-2 px-4 py-2 text-center cursor-pointer bg-gray-200 rounded-lg font-bold">
+            <label className="block mb-2 px-4 py-2 text-center cursor-pointer bg-gray-100 rounded-lg font-bold text-black">
               {image ? image.name : "Upload Image"}
               <input
                 type="file"
@@ -105,26 +105,26 @@ const ProductList = () => {
             </label>
           </div>
 
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-wrap mb-4">
-              <div className="w-full md:w-1/2 md:pr-4 mb-4 md:mb-0">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex flex-col md:flex-row md:space-x-4">
+              <div className="w-full md:w-1/2">
                 <label htmlFor="name" className="block mb-2 text-gray-700">Name</label>
                 <input
                   type="text"
                   id="name"
-                  className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
+                  className="p-4 w-full border rounded-lg bg-gray-100 text-gray-800"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Product Name"
                 />
               </div>
 
-              <div className="w-full md:w-1/2 md:pl-4">
+              <div className="w-full md:w-1/2">
                 <label htmlFor="price" className="block mb-2 text-gray-700">Price</label>
                 <input
                   type="number"
                   id="price"
-                  className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
+                  className="p-4 w-full border rounded-lg bg-gray-100 text-gray-800"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   placeholder="Product Price"
@@ -132,25 +132,25 @@ const ProductList = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap mb-4">
-              <div className="w-full md:w-1/2 md:pr-4 mb-4 md:mb-0">
+            <div className="flex flex-col md:flex-row md:space-x-4">
+              <div className="w-full md:w-1/2">
                 <label htmlFor="quantity" className="block mb-2 text-gray-700">Quantity</label>
                 <input
                   type="number"
                   id="quantity"
-                  className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
+                  className="p-4 w-full border rounded-lg bg-gray-100 text-gray-800"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                   placeholder="Product Quantity"
                 />
               </div>
 
-              <div className="w-full md:w-1/2 md:pl-4">
+              <div className="w-full md:w-1/2">
                 <label htmlFor="brand" className="block mb-2 text-gray-700">Brand</label>
                 <input
                   type="text"
                   id="brand"
-                  className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
+                  className="p-4 w-full border rounded-lg bg-gray-100 text-gray-800"
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
                   placeholder="Product Brand"
@@ -162,20 +162,20 @@ const ProductList = () => {
               <label htmlFor="description" className="block mb-2 text-gray-700">Description</label>
               <textarea
                 id="description"
-                className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
+                className="p-4 w-full border rounded-lg bg-gray-100 text-gray-800"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Product Description"
               ></textarea>
             </div>
 
-            <div className="flex flex-wrap mb-4">
-              <div className="w-full md:w-1/2 md:pr-4 mb-4 md:mb-0">
+            <div className="flex flex-col md:flex-row md:space-x-4">
+              <div className="w-full md:w-1/2">
                 <label htmlFor="stock" className="block mb-2 text-gray-700">Count In Stock</label>
                 <input
                   type="number"
                   id="stock"
-                  className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
+                  className="p-4 w-full border rounded-lg bg-gray-100 text-gray-800"
                   value={stock}
                   onChange={(e) => setStock(e.target.value)}
                   min="0"
@@ -183,14 +183,14 @@ const ProductList = () => {
                 />
               </div>
 
-              <div className="w-full md:w-1/2 md:pl-4">
+              <div className="w-full md:w-1/2">
                 <label htmlFor="category" className="block mb-2 text-gray-700">Category</label>
                 {isLoading ? (
-                  <p>Loading categories...</p>
+                  <p className="text-gray-700">Loading categories...</p>
                 ) : (
                   <select
                     id="category"
-                    className="p-4 w-full border rounded-lg bg-gray-200 text-gray-800"
+                    className="p-4 w-full border rounded-lg bg-gray-100 text-gray-800"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
@@ -207,7 +207,7 @@ const ProductList = () => {
 
             <button
               type="submit"
-              className={`py-4 px-10 rounded-lg text-lg font-bold ${isSubmitting ? "bg-gray-400" : "bg-black-600"} text-white`}
+              className={`bg-black py-2 px-6 rounded-full text-lg w-full mt-8${isSubmitting ? "bg-gray-400" : "bg-black"} text-white`}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Submit"}

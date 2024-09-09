@@ -10,9 +10,7 @@ import { clearCartItems } from "../../redux/features/cart/cartSlice";
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
-
   const cart = useSelector((state) => state.cart);
-
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
   useEffect(() => {
@@ -42,10 +40,10 @@ const PlaceOrder = () => {
   };
 
   return (
-    <>
+    <div className="mt-[112px] px-6">
       <ProgressSteps step1 step2 step3 />
 
-      <div className="container mx-auto mt-8">
+      <div className="container mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg max-w-4xl">
         {cart.cartItems.length === 0 ? (
           <Message>Your cart is empty</Message>
         ) : (
@@ -53,32 +51,31 @@ const PlaceOrder = () => {
             <table className="w-full border-collapse">
               <thead>
                 <tr>
-                  <td className="px-1 py-2 text-left align-top">Image</td>
-                  <td className="px-1 py-2 text-left">Product</td>
-                  <td className="px-1 py-2 text-left">Quantity</td>
-                  <td className="px-1 py-2 text-left">Price</td>
-                  <td className="px-1 py-2 text-left">Total</td>
+                  <td className="px-2 py-3 text-left border-b">Image</td>
+                  <td className="px-2 py-3 text-left border-b">Product</td>
+                  <td className="px-2 py-3 text-left border-b">Quantity</td>
+                  <td className="px-2 py-3 text-left border-b">Price</td>
+                  <td className="px-2 py-3 text-left border-b">Total</td>
                 </tr>
               </thead>
 
               <tbody>
                 {cart.cartItems.map((item, index) => (
                   <tr key={index}>
-                    <td className="p-2">
+                    <td className="p-2 border-b">
                       <img
                         src={item.image}
                         alt={item.name}
                         className="w-16 h-16 object-cover"
                       />
                     </td>
-
-                    <td className="p-2">
+                    <td className="p-2 border-b">
                       <Link to={`/product/${item.product}`}>{item.name}</Link>
                     </td>
-                    <td className="p-2">{item.qty}</td>
-                    <td className="p-2">{item.price.toFixed(2)}</td>
-                    <td className="p-2">
-                      $ {(item.qty * item.price).toFixed(2)}
+                    <td className="p-2 border-b">{item.qty}</td>
+                    <td className="p-2 border-b">{item.price.toFixed(2)}</td>
+                    <td className="p-2 border-b">
+                      ${(item.qty * item.price).toFixed(2)}
                     </td>
                   </tr>
                 ))}
@@ -89,34 +86,32 @@ const PlaceOrder = () => {
 
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-5">Order Summary</h2>
-          <div className="flex justify-between flex-wrap p-8 bg-[#181818]">
-            <ul className="text-lg">
-              <li>
-                <span className="font-semibold mb-4">Items:</span> $
-                {cart.itemsPrice}
+          <div className="flex flex-col md:flex-row justify-between bg-white text-black p-6 border border-gray-700 rounded-lg">
+            <ul className="text-lg mb-4 md:mb-0">
+              <li className="mb-2">
+                <span className="font-semibold">Items:</span> ${cart.itemsPrice}
+              </li>
+              <li className="mb-2">
+                <span className="font-semibold">Shipping:</span> ${cart.shippingPrice}
+              </li>
+              <li className="mb-2">
+                <span className="font-semibold">Tax:</span> ${cart.taxPrice}
               </li>
               <li>
-                <span className="font-semibold mb-4">Shipping:</span> $
-                {cart.shippingPrice}
-              </li>
-              <li>
-                <span className="font-semibold mb-4">Tax:</span> $
-                {cart.taxPrice}
-              </li>
-              <li>
-                <span className="font-semibold mb-4">Total:</span> $
-                {cart.totalPrice}
+                <span className="font-semibold">Total:</span> ${cart.totalPrice}
               </li>
             </ul>
 
-            {error && <Message variant="danger">{error.data.message}</Message>}
+            {error && (
+              <Message variant="danger" className="mb-4 md:mb-0">
+                {error.data.message}
+              </Message>
+            )}
 
             <div>
               <h2 className="text-2xl font-semibold mb-4">Shipping</h2>
               <p>
-                <strong>Address:</strong> {cart.shippingAddress.address},{" "}
-                {cart.shippingAddress.city} {cart.shippingAddress.postalCode},{" "}
-                {cart.shippingAddress.country}
+                <strong>Address:</strong> {cart.shippingAddress.address}, {cart.shippingAddress.city} {cart.shippingAddress.postalCode}, {cart.shippingAddress.country}
               </p>
             </div>
 
@@ -128,7 +123,7 @@ const PlaceOrder = () => {
 
           <button
             type="button"
-            className="bg-stone-900 text-white py-2 px-4 rounded-full text-lg w-full mt-4"
+            className="bg-stone-900 text-white py-2 px-6 rounded-full text-lg w-full mt-6"
             disabled={cart.cartItems === 0}
             onClick={placeOrderHandler}
           >
@@ -138,7 +133,7 @@ const PlaceOrder = () => {
           {isLoading && <Loader />}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

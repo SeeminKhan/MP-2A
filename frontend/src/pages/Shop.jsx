@@ -74,10 +74,10 @@ const Shop = () => {
 
   return (
     <>
-      <div className="mt-[110px] container mx-auto ">
+      <div className="mt-[108px] container mx-auto ">
         <div className="flex flex-col md:flex-row">
-          <div className="bg-white p-4 mt-4 mb-4 rounded-lg shadow-lg text-black">
-            <h2 className="text-xl text-center py-3 bg-black text-white rounded-lg mb-4">
+          <div className="bg-white p-4 mb-4 rounded-lg shadow-lg text-black">
+            <h2 className="text-lg text-center py-2 bg-black text-white rounded-lg mb-4">
               Filter by Categories
             </h2>
 
@@ -102,7 +102,7 @@ const Shop = () => {
               ))}
             </div>
 
-            <h2 className="text-xl text-center py-3 bg-black text-white rounded-lg mb-4">
+            <h2 className="text-lg text-center py-2 bg-black text-white rounded-lg mb-4">
               Filter by Brands
             </h2>
 
@@ -123,7 +123,7 @@ const Shop = () => {
               ))}
             </div>
 
-            <h2 className="text-xl text-center py-3 bg-black text-white rounded-lg mb-4">
+            <h2 className="text- text-center py-2 bg-black text-white rounded-lg mb-4">
               Filter by Price
             </h2>
 
@@ -147,9 +147,9 @@ const Shop = () => {
             </div>
           </div>
 
-          <div className="p-4 w-full">
-            <h2 className="text-2xl text-center text-black mb-6">
-              {products?.length} Products
+          <div className="px-4 w-full">
+            <h2 className="text-2xl text-semibold text-center text-black mb-2">
+              Showing all ({products?.length} Products)
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {products.length === 0 ? (

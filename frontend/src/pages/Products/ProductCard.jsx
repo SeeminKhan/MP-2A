@@ -17,26 +17,24 @@ const ProductCard = ({ p }) => {
   };
 
   return (
-    <div className="max-w-sm relative bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-sm bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl overflow-hidden">
       <section className="relative">
         <Link to={`/product/${p._id}`}>
+          <img
+            className="w-full h-70 object-cover"
+            src={p.image}
+            alt={p.name}
+          />
           <span className="absolute bottom-3 right-3 bg-black text-white text-sm font-medium px-2.5 py-0.5 rounded-full">
             {p?.brand}
           </span>
-          <img
-            className="cursor-pointer w-full"
-            src={p.image}
-            alt={p.name}
-            style={{ height: "170px", objectFit: "cover" }}
-          />
         </Link>
         <HeartIcon product={p} />
       </section>
 
       <div className="p-5">
-        <div className="flex justify-between">
-          <h5 className="mb-2 text-xl text-black dark:text-white">{p?.name}</h5>
-
+        <div className="flex justify-between items-center">
+          <h5 className="text-xl font-semibold text-black">{p?.name}</h5>
           <p className="text-black font-semibold">
             {p?.price?.toLocaleString("en-US", {
               style: "currency",
@@ -45,7 +43,7 @@ const ProductCard = ({ p }) => {
           </p>
         </div>
 
-        <p className="mb-3 font-normal text-[#CFCFCF]">
+        <p className="mt-2 mb-3 text-gray-600">
           {p?.description?.substring(0, 60)} ...
         </p>
 
@@ -73,7 +71,7 @@ const ProductCard = ({ p }) => {
           </Link>
 
           <button
-            className="p-2 rounded-full"
+            className="p-2 rounded-full hover:bg-gray-200 transition"
             onClick={() => addToCartHandler(p, 1)}
           >
             <AiOutlineShoppingCart size={25} />
