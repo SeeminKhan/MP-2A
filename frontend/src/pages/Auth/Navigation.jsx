@@ -56,8 +56,13 @@ const Navigation = () => {
           scrolling ? "bg-white text-black" : "bg-transparent text-black"
         }`}
       >
+<<<<<<< Updated upstream
         <div className="flex items-center justify-center flex-grow mr-5 bg-[url('https://img.freepik.com/free-vector/blue-fluid-background_53876-114597.jpg')] bg-cover bg-center">
           <span className="text-3xl font-extrabold">Sharmeena Kariyaniya</span>
+=======
+        <div className="flex-grow flex items-center justify-center">
+          {/* <span className="text-3xl font-extrabold">Sharmeena Kariyaniya</span> */}
+>>>>>>> Stashed changes
         </div>
 
         <SearchBar />
