@@ -4,6 +4,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Slider from "./Products/ProductCarousel";
 import Product from "./Products/Product";
+import ProductList from "./Products/ProductList";
 
 const Home = () => {
   const { keyword } = useParams();
@@ -35,7 +36,7 @@ const Home = () => {
 
             <div className="flex flex-wrap justify-center gap-6">
               {data.products.slice(0, 3).map((product) => (
-                <div key={product._id} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
+                <div key={product._id} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2 ml-20">
                   <Product product={product} />
                 </div>
               ))}

@@ -11,6 +11,7 @@ import {
   ArrowDropDown as ArrowDropDownIcon,
 } from "@mui/icons-material";
 import FavoritesCount from "../Products/FavoritesCount";
+import { SearchBar } from "./SearchBar";
 
 const Navigation = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -55,9 +56,12 @@ const Navigation = () => {
           scrolling ? "bg-white text-black" : "bg-transparent text-black"
         }`}
       >
-        <div className="flex-grow flex items-center justify-center">
+        <div className="flex items-center justify-center flex-grow mr-5 bg-[url('https://img.freepik.com/free-vector/blue-fluid-background_53876-114597.jpg')] bg-cover bg-center">
           <span className="text-3xl font-extrabold">Sharmeena Kariyaniya</span>
         </div>
+
+        <SearchBar />
+
         <div className="flex items-center space-x-6">
           <Link
             to="/cart"
@@ -65,7 +69,7 @@ const Navigation = () => {
           >
             <ShoppingCartIcon />
             {cartItems.length > 0 && (
-              <span className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full">
+              <span className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 ml-10 text-xs text-black bg-white rounded-full">
                 {cartItems.reduce((a, c) => a + c.qty, 0)}
               </span>
             )}
