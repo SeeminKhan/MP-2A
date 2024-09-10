@@ -4,11 +4,12 @@ import Footer from './components/Footer'; // Adjust the import path as needed
 import HomePage from './pages/Home'; // Adjust the import path as needed
 import LoginPage from './pages/Login'; // Adjust the import path as needed
 import RegisterPage from './pages/Register'; // Adjust the import path as needed
+import Navigation from "./components/Navigation/Navigation";
 
 const App = () => {
   return (
     <Router>
-      <Navbar />
+      <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
