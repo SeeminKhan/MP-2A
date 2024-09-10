@@ -34,9 +34,9 @@ const Home = () => {
               Our Special Products
             </h1>
 
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-10 ml-0">
               {data.products.slice(0, 3).map((product) => (
-                <div key={product._id} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2 ml-20">
+                <div key={product._id} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 ml-14">
                   <Product product={product} />
                 </div>
               ))}
