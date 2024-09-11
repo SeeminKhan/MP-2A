@@ -92,7 +92,7 @@ const Order = () => {
   ) : error ? (
     <Messsage variant="danger">{error.data.message}</Messsage>
   ) : (
-    <div className="container mx-auto mt-[112px] px-4">
+    <div className="container mx-auto mt-[96px] px-4">
       {/* First Section: Table */}
       <div className="w-full overflow-x-auto">
         <div className="border border-gray-300">

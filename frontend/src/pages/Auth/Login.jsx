@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <div className="mt-[112px] flex">
+    <div className="mt-[96px] flex">
       {/* Left Image Section */}
       <div className="w-1/2 hidden md:flex items-center justify-center pl-8">
         <img

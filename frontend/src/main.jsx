@@ -31,6 +31,7 @@ import ProductDetails from "./pages/Products/ProductDetails.jsx";
 
 import Cart from "./pages/Cart.jsx";
 import Shop from "./pages/Shop.jsx";
+import About from "./pages/About.jsx";
 
 import Shipping from "./pages/Orders/Shipping.jsx";
 import PlaceOrder from "./pages/Orders/PlaceOrder.jsx";
@@ -51,6 +52,7 @@ const router = createBrowserRouter(
       <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/shop" element={<Shop />} />
+      <Route path="/about" element={<About />} />
 
       {/* Registered users */}
       <Route path="" element={<PrivateRoute />}>

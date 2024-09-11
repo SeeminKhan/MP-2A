@@ -23,7 +23,7 @@ const AllProducts = () => {
   }
 
   return (
-    <div className="mt-[112px] container mx-auto p-4 md:p-8">
+    <div className="mt-[96px] container mx-auto p-4 md:p-8">
       <div className="flex flex-col md:flex-row">
         <div className="flex-1 p-3">
           <div className="text-xl font-bold mb-4">

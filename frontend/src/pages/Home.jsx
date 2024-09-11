@@ -4,7 +4,6 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Slider from "./Products/ProductCarousel";
 import Product from "./Products/Product";
-import ProductList from "./Products/ProductList";
 
 const Home = () => {
   const { keyword } = useParams();
@@ -19,31 +18,33 @@ const Home = () => {
 
   return (
     <>
-      <Slider images={sliderImages} />
+      {/* Full-screen height slider */}
+      <div className="h-screen w-full">
+        <Slider images={sliderImages} />
+      </div>
 
-      {isLoading ? (
-        <Loader />
-      ) : isError ? (
-        <Message variant="danger">
-          {isError?.data.message || isError.error}
-        </Message>
-      ) : (
-        <>
-          <div className="flex flex-col items-center py-6 rounded-lg mt-6 max-w-screen-lg mx-auto">
-            <h1 className="text-3xl font-bold text-black mb-6 text-center">
-              Our Special Products
-            </h1>
+      {/* Special Products Section */}
+      <div className="flex flex-col items-center py-12">
+        <h1 className="text-4xl font-bold text-black mb-8 text-center">
+          Our Special Products
+        </h1>
 
-            <div className="flex flex-wrap justify-center gap-10 ml-0">
-              {data.products.slice(0, 3).map((product) => (
-                <div key={product._id} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 ml-14">
-                  <Product product={product} />
-                </div>
-              ))}
-            </div>
+        {isLoading ? (
+          <Loader />
+        ) : isError ? (
+          <Message variant="danger">
+            {isError?.data?.message || isError?.error}
+          </Message>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-lg w-full px-6">
+            {data.products.slice(0, 3).map((product) => (
+              <div key={product._id} className="mb-10 mr-6">
+                <Product product={product} />
+              </div>
+            ))}
           </div>
-        </>
-      )}
+        )}
+      </div>
     </>
   );
 };

@@ -24,7 +24,7 @@ const Cart = () => {
 
   return (
     <>
-      <div className="container flex justify-around items-start flex-wrap mx-auto mt-[112px] text-black bg-white p-8 shadow-lg rounded-lg">
+      <div className="container flex justify-around items-start flex-wrap mx-auto mt-[96px] text-black bg-white p-8 shadow-lg rounded-lg">
         {cartItems.length === 0 ? (
           <div className="text-center text-lg text-stone-600">
             Your cart is empty{" "}

@@ -85,7 +85,7 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <section className="mt-[112px] p-4">
+      <section className="mt-[96px] p-4">
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="lg:w-1/3 w-full flex flex-col gap-4">
             <div className="rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 p-5 shadow-lg flex items-center">

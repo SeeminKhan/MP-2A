@@ -74,9 +74,9 @@ const Shop = () => {
 
   return (
     <>
-      <div className="mt-[108px] container mx-auto ">
+      <div className="mt-[102px] container mx-auto ">
         <div className="flex flex-col md:flex-row">
-          <div className="bg-white p-4 mb-4 rounded-lg shadow-lg text-black">
+          {/* <div className="bg-white p-4 mb-4 rounded-lg shadow-lg text-black">
             <h2 className="text-lg text-center py-2 bg-black text-white rounded-lg mb-4">
               Filter by Categories
             </h2>
@@ -145,18 +145,18 @@ const Shop = () => {
                 Reset Filters
               </button>
             </div>
-          </div>
+          </div> */}
 
           <div className="px-4 w-full">
-            <h2 className="text-2xl text-semibold text-center text-black mb-2">
+            {/* <h2 className="text-2xl text-semibold text-center text-black mb-2">
               Showing all ({products?.length} Products)
-            </h2>
+            </h2> */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {products.length === 0 ? (
                 <Loader />
               ) : (
                 products?.map((p) => (
-                  <div className="p-3" key={p._id}>
+                  <div className="px-3" key={p._id}>
                     <ProductCard p={p} />
                   </div>
                 ))

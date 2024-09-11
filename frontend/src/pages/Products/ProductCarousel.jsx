@@ -1,12 +1,14 @@
-import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
-import Message from "../../components/Message";
+import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const ProductCarousel = () => {
-  const { data: products, isLoading, error } = useGetTopProductsQuery();
+// Import images from the local folder
+import image1 from "./SliderImg/slider1.jpg";
+import image2 from "./SliderImg/slider2.jpg";
+import image3 from "./SliderImg/slider3.jpg";
 
+const ProductCarousel = () => {
   // Slider settings
   const settings = {
     dots: true, // Show dots for navigation
@@ -27,30 +29,27 @@ const ProductCarousel = () => {
     ],
   };
 
+  // Array of image objects
+  const images = [
+    { src: image1, alt: "Image 1" },
+    { src: image2, alt: "Image 2" },
+    { src: image3, alt: "Image 3" },
+  ];
+
   return (
-    <div className="relative w-full overflow-hidden">
-      {isLoading ? (
-        <div className="flex justify-center items-center h-screen">
-          <div>Loading...</div>
-        </div>
-      ) : error ? (
-        <Message variant="danger">
-          {error?.data?.message || error.error}
-        </Message>
-      ) : (
-        <Slider {...settings} className="w-full">
-          {products.map(({ image, _id, name }) => (
-            <div key={_id} className="flex justify-center items-center">
-              <img
-                src={image}
-                alt={name}
-                className="w-full h-screen max-h-screen object-cover" // Responsive image
-                style={{ maxHeight: '80vh' }} // Adjust height as needed
-              />
-            </div>
-          ))}
-        </Slider>
-      )}
+    <div className="relative w-full h-screen overflow-hidden">
+      <Slider {...settings} className="w-full h-full">
+        {images.map(({ src, alt }, index) => (
+          <div key={index} className="w-full h-full flex justify-center items-center">
+            <img
+              src={src}
+              alt={alt}
+              className="w-full h-full object-cover" // Responsive image
+              style={{ height: '100vh' }} // Ensure image height is full viewport height
+            />
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 };

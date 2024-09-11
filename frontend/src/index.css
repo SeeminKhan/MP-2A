@@ -10,6 +10,20 @@ body {
   color: #070707;
 }
 
+/* Hide scrollbars on WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  display: none; /* Hides scrollbar */
+}
+
+/* Hide scrollbars on Firefox */
+html {
+  scrollbar-width: none; /* Hides scrollbar */
+}
+
+/* Hide scrollbars on Edge */
+body {
+  -ms-overflow-style: none; /* Hides scrollbar */
+}
 
 input,
 textarea {

@@ -65,7 +65,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="mt-[112px]">
+      <div className="mt-[96px]">
         {/* <Link
           to="/"
           className="text-black font-semibold hover:underline ml-10"

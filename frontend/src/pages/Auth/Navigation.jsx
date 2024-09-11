@@ -4,8 +4,7 @@ import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 
-import { FaBars } from "react-icons/fa";
-import Drawer from "./Drawer";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 import {
   ShoppingCart as ShoppingCartIcon,
@@ -19,17 +18,13 @@ import FavoritesCount from "../Products/FavoritesCount";
 const Navigation = () => {
   const [scrolling, setScrolling] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const { userInfo } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [logoutApiCall] = useLogoutMutation();
-
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDrawer = () => {
-    setIsOpen(!isOpen);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,63 +52,130 @@ const Navigation = () => {
     }
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
     <>
-      <Drawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
+      {/* Overlay for Sidebar */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 z-40"
+          onClick={toggleSidebar}
+        />
+      )}
+
+      {/* Sidebar for Small Screens */}
       <div
-        className={`fixed top-0 left-0 w-full p-4 flex justify-between items-center z-50 transition-all ${
-          scrolling ? "bg-[#00a0ff] text-black" : "bg-transparent text-black"
-        }`}
+        className={`fixed top-0 left-0 h-full bg-white z-50 transition-transform transform ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } w-64 p-4 text-black duration-300 ease-in-out`}
       >
-        {/* Hamburger Menu Icon */}
-        <div className="block md:hidden">
-          <FaBars className="text-3xl grid" onClick={toggleDrawer} />
+        <div className="flex justify-between items-center mb-6">
+          <span className="text-3xl font-bold">Menu</span>
+          <FaTimes
+            className="text-2xl cursor-pointer"
+            onClick={toggleSidebar}
+          />
         </div>
-
-        {/* Logo */}
-        <div className="flex items-center justify-center p-5 flex-grow bg-center">
-          <span className="text-4xl font-extrabold">reversoindia</span>
-        </div>
-
-        {/* Navigation Links for Desktop */}
-        <div className={"hidden md:block"}>
-          <div className="text-xl font-semibold flex space-x-6">
-            <Link
-              to="/"
-              className="flex items-center transition-transform hover:translate-y-1"
-            >
-              <span className="ml-2">HOME</span>
-            </Link>
-            <Link
-              to="/shop"
-              className="flex items-center transition-transform hover:translate-y-1"
-            >
-              <span className="ml-2">SHOP</span>
-            </Link>
-            <Link
-              to="/collection"
-              className="flex items-center transition-transform hover:translate-y-1"
-            >
-              <span className="ml-2">COLLECTION</span>
-            </Link>
-            <Link
-              to="/about"
-              className="flex items-center transition-transform hover:translate-y-1"
-            >
-              <span className="ml-2">ABOUT</span>
-            </Link>
-          </div>
-        </div>
-
-        {/* Icons */}
-        <div className="flex items-center space-x-6">
+        <nav className="flex flex-col space-y-4">
+          <Link
+            to="/"
+            className="text-xl hover:bg-gray-200 p-2"
+            onClick={toggleSidebar}
+          >
+            HOME
+          </Link>
+          <Link
+            to="/shop"
+            className="text-xl hover:bg-gray-200 p-2"
+            onClick={toggleSidebar}
+          >
+            SHOP
+          </Link>
+          <Link
+            to="/favorite"
+            className="text-xl hover:bg-gray-200 p-2"
+            onClick={toggleSidebar}
+          >
+            FAVOURITES
+          </Link>
           <Link
             to="/cart"
-            className="relative flex items-center transition-transform hover:translate-y-1"
+            className="text-xl hover:bg-gray-200 p-2"
+            onClick={toggleSidebar}
           >
-            <ShoppingCartIcon />
+            CART
+          </Link>
+          {/* <Link
+            to="/collection"
+            className="text-xl hover:bg-gray-200 p-2"
+            onClick={toggleSidebar}
+          >
+            COLLECTION
+          </Link> */}
+          <Link
+            to="/about"
+            className="text-xl hover:bg-gray-200 p-2"
+            onClick={toggleSidebar}
+          >
+            ABOUT
+          </Link>
+        </nav>
+      </div>
+
+      {/* Main Navbar */}
+      <div
+        className={`fixed top-0 left-0 w-full py-4 px-6 flex justify-between items-center z-30 transition-all ${
+          scrolling
+            ? "bg-white text-black shadow-md"
+            : "bg-transparent text-black"
+        } ${
+          sidebarOpen ? "opacity-0" : "opacity-100"
+        } duration-300 ease-in-out`}
+      >
+      
+        
+        {/* Mobile Hamburger Menu */}
+        <div className="block md:hidden">
+          <FaBars className="text-xl cursor-pointer mr-5" onClick={toggleSidebar} />
+        </div>
+          {/* Left: Brand Name */}
+        <div className="flex items-center flex-grow md:flex-grow-0">
+          <Link to="/" className="text-4xl font-extrabold pr-10">
+            reversoindia
+          </Link>
+        </div>
+
+        {/* Center: Navigation Links (Hidden on Small Screens) */}
+        <div className="hidden md:flex items-center justify-center space-x-8">
+          <Link to="/" className="text-lg font-semibold hover:text-gray-700">
+            HOME
+          </Link>
+          <Link to="/shop" className="text-lg font-semibold hover:text-gray-700">
+            SHOP
+          </Link>
+          {/* <Link
+            to="/collection"
+            className="text-lg font-semibold hover:text-gray-700"
+          >
+            COLLECTION
+          </Link> */}
+          <Link to="/about" className="text-lg font-semibold hover:text-gray-700">
+            ABOUT
+          </Link>
+        </div>
+
+        {/* Right: Icons */}
+        <div className="flex items-center space-x-4 md:space-x-6">
+          <Link
+            to="/cart"
+            className="hidden relative md:flex items-center transition-transform hover:translate-y-1"
+          >
+            <ShoppingCartIcon fontSize="medium" />
             {cartItems.length > 0 && (
-              <span className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 ml-10 text-xs text-black bg-white rounded-full">
+              <span className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full">
                 {cartItems.reduce((a, c) => a + c.qty, 0)}
               </span>
             )}
@@ -121,9 +183,9 @@ const Navigation = () => {
 
           <Link
             to="/favorite"
-            className="relative flex items-center transition-transform hover:translate-y-1"
+            className="hidden relative md:flex items-center transition-transform hover:translate-y-1"
           >
-            <FavoriteIcon />
+            <FavoriteIcon fontSize="medium" />
             <FavoritesCount />
           </Link>
 
@@ -133,8 +195,7 @@ const Navigation = () => {
                 onClick={toggleDropdown}
                 className="flex items-center text-black"
               >
-                <AccountCircleIcon />
-                <span className="ml-2 hidden md:block">{userInfo.username}</span>
+                <AccountCircleIcon fontSize="medium" />
                 <ArrowDropDownIcon
                   className={`transition-transform ${
                     dropdownOpen ? "rotate-180" : ""
@@ -153,7 +214,46 @@ const Navigation = () => {
                           Dashboard
                         </Link>
                       </li>
-                      {/* Additional admin links */}
+                      <li>
+                        <Link
+                          to="/admin/categorylist"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Create Category
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/admin/productlist"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Create Product
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/admin/allproductslist"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Manage Products
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/admin/orderlist"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Manage Orders
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/admin/userlist"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Manage Users
+                        </Link>
+                      </li>
                     </>
                   )}
                   <li>
@@ -180,10 +280,11 @@ const Navigation = () => {
               to="/register"
               className="transition-transform hover:translate-y-1"
             >
-              <PersonAddIcon />
+              <PersonAddIcon fontSize="medium"/>
             </Link>
           )}
         </div>
+        
       </div>
     </>
   );

@@ -20,19 +20,21 @@ const ProductCard = ({ p }) => {
     <div className="max-w-sm bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl overflow-hidden">
       <section className="relative">
         <Link to={`/product/${p._id}`}>
-          <img
-            className="w-full h-70 object-cover"
-            src={p.image}
-            alt={p.name}
-          />
-          <span className="absolute bottom-3 right-3 bg-black text-white text-sm font-medium px-2.5 py-0.5 rounded-full">
-            {p?.brand}
-          </span>
+          <div className="w-full h-[400px] relative overflow-hidden">
+            <img
+              className="w-full h-full object-cover"
+              src={p.image}
+              alt={p.name}
+            />
+            <span className="absolute bottom-3 right-3 bg-black text-white text-sm font-medium px-2.5 py-0.5 rounded-full">
+              {p?.brand}
+            </span>
+          </div>
         </Link>
         <HeartIcon product={p} />
       </section>
 
-      <div className="p-5">
+      <div className="p-4">
         <div className="flex justify-between items-center">
           <h5 className="text-xl font-semibold text-black">{p?.name}</h5>
           <p className="text-black font-semibold">
