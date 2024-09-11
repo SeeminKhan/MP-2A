@@ -3,6 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+
+import { FaBars } from "react-icons/fa";
+import Drawer from "./Drawer";
+
 import {
   ShoppingCart as ShoppingCartIcon,
   Favorite as FavoriteIcon,
@@ -11,7 +15,6 @@ import {
   ArrowDropDown as ArrowDropDownIcon,
 } from "@mui/icons-material";
 import FavoritesCount from "../Products/FavoritesCount";
-import { SearchBar } from "./SearchBar";
 
 const Navigation = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -22,6 +25,11 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [logoutApiCall] = useLogoutMutation();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = () => {
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,17 +59,53 @@ const Navigation = () => {
 
   return (
     <>
+      <Drawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
       <div
         className={`fixed top-0 left-0 w-full p-4 flex justify-between items-center z-50 transition-all ${
-          scrolling ? "bg-white text-black" : "bg-transparent text-black"
+          scrolling ? "bg-[#00a0ff] text-black" : "bg-transparent text-black"
         }`}
       >
-        <div className="flex-grow flex items-center justify-center mr-5 bg-[url('https://img.freepik.com/free-vector/blue-fluid-background_53876-114597.jpg')] bg-cover bg-center">
-          <span className="text-3xl font-extrabold">Sharmeena Kariyaniya</span>
+        {/* Hamburger Menu Icon */}
+        <div className="block md:hidden">
+          <FaBars className="text-3xl grid" onClick={toggleDrawer} />
         </div>
 
-        <SearchBar />
+        {/* Logo */}
+        <div className="flex items-center justify-center p-5 flex-grow bg-center">
+          <span className="text-4xl font-extrabold">reversoindia</span>
+        </div>
 
+        {/* Navigation Links for Desktop */}
+        <div className={"hidden md:block"}>
+          <div className="text-xl font-semibold flex space-x-6">
+            <Link
+              to="/"
+              className="flex items-center transition-transform hover:translate-y-1"
+            >
+              <span className="ml-2">HOME</span>
+            </Link>
+            <Link
+              to="/shop"
+              className="flex items-center transition-transform hover:translate-y-1"
+            >
+              <span className="ml-2">SHOP</span>
+            </Link>
+            <Link
+              to="/collection"
+              className="flex items-center transition-transform hover:translate-y-1"
+            >
+              <span className="ml-2">COLLECTION</span>
+            </Link>
+            <Link
+              to="/about"
+              className="flex items-center transition-transform hover:translate-y-1"
+            >
+              <span className="ml-2">ABOUT</span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Icons */}
         <div className="flex items-center space-x-6">
           <Link
             to="/cart"
@@ -90,7 +134,7 @@ const Navigation = () => {
                 className="flex items-center text-black"
               >
                 <AccountCircleIcon />
-                <span className="ml-2">{userInfo.username}</span>
+                <span className="ml-2 hidden md:block">{userInfo.username}</span>
                 <ArrowDropDownIcon
                   className={`transition-transform ${
                     dropdownOpen ? "rotate-180" : ""
@@ -109,46 +153,7 @@ const Navigation = () => {
                           Dashboard
                         </Link>
                       </li>
-                      <li>
-                        <Link
-                          to="/admin/categorylist"
-                          className="block px-4 py-2 hover:bg-gray-100"
-                        >
-                          Create Category
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/admin/productlist"
-                          className="block px-4 py-2 hover:bg-gray-100"
-                        >
-                          Create Product
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/admin/allproductslist"
-                          className="block px-4 py-2 hover:bg-gray-100"
-                        >
-                          Manage Products
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/admin/orderlist"
-                          className="block px-4 py-2 hover:bg-gray-100"
-                        >
-                          Manage Orders
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/admin/userlist"
-                          className="block px-4 py-2 hover:bg-gray-100"
-                        >
-                          Manage Users
-                        </Link>
-                      </li>
+                      {/* Additional admin links */}
                     </>
                   )}
                   <li>
@@ -178,39 +183,6 @@ const Navigation = () => {
               <PersonAddIcon />
             </Link>
           )}
-        </div>
-      </div>
-
-      <div
-        className={`shadow-lg shadow-black/5 fixed top-16 left-0 w-full p-2 flex justify-center items-center space-x-8 z-40 font-medium transition-all ${
-          scrolling ? "bg-white text-black" : "bg-transparent text-black"
-        }`}
-      >
-        <div className="text-xl font-semibold flex space-x-6">
-          <Link
-            to="/"
-            className="flex items-center transition-transform hover:translate-y-1"
-          >
-            <span className="ml-2">HOME</span>
-          </Link>
-          <Link
-            to="/shop"
-            className="flex items-center transition-transform hover:translate-y-1"
-          >
-            <span className="ml-2">SHOP</span>
-          </Link>
-          <Link
-            to="/collection"
-            className="flex items-center transition-transform hover:translate-y-1"
-          >
-            <span className="ml-2">COLLECTION</span>
-          </Link>
-          <Link
-            to="/about"
-            className="flex items-center transition-transform hover:translate-y-1"
-          >
-            <span className="ml-2">ABOUT</span>
-          </Link>
         </div>
       </div>
     </>
