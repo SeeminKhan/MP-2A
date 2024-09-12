@@ -17,26 +17,7 @@ const Footer = () => {
         </button>
       </div>
 
-      {/* Newsletter */}
-      <div className="border border-gray-600 rounded-lg flex items-center justify-between px-4 py-2 mt-6">
-        <input
-          type="email"
-          placeholder="Enter your email Address"
-          className="bg-black text-white placeholder-gray-400 focus:outline-none w-full"
-        />
-        <MdKeyboardArrowRight className="text-white text-2xl" />
-      </div>
-
-      {/* Store Locator */}
-      <div className="border border-gray-600 rounded-lg flex items-center justify-between px-4 py-2 mt-4">
-        <MdLocationOn className="text-white text-xl" />
-        <input
-          type="text"
-          placeholder="Enter your Location"
-          className="bg-black text-white placeholder-gray-400 focus:outline-none w-full"
-        />
-        <MdKeyboardArrowRight className="text-white text-2xl" />
-      </div>
+     
 
       {/* Footer Sections */}
       <div className="pt-6 space-y-4">
