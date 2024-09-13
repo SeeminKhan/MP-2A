@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "./LOGO1.jpg"
 
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -135,16 +136,18 @@ const Navigation = () => {
           sidebarOpen ? "opacity-0" : "opacity-100"
         } duration-300 ease-in-out`}
       >
-      
-        
         {/* Mobile Hamburger Menu */}
         <div className="block md:hidden">
           <FaBars className="text-xl cursor-pointer mr-5" onClick={toggleSidebar} />
         </div>
-          {/* Left: Brand Name */}
+        {/* Left: Logo */}
         <div className="flex items-center flex-grow md:flex-grow-0">
-          <Link to="/" className="text-4xl font-extrabold pr-10">
-            reversoindia
+          <Link to="/">
+            <img
+              src={logo} // Path to your logo image
+              alt="Brand Logo"
+              className="w-40 h-[70px]" // Adjust size as needed
+            />
           </Link>
         </div>
 
@@ -155,6 +158,9 @@ const Navigation = () => {
           </Link>
           <Link to="/shop" className="text-lg font-semibold hover:text-gray-700">
             SHOP
+          </Link>
+          <Link to="/skcircle" className="text-lg font-semibold hover:text-gray-700">
+            SK CIRCLE
           </Link>
           {/* <Link
             to="/collection"
@@ -284,7 +290,6 @@ const Navigation = () => {
             </Link>
           )}
         </div>
-        
       </div>
     </>
   );
