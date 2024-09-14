@@ -31,7 +31,7 @@ const Shipping = () => {
   }, [navigate, shippingAddress]);
 
   return (
-    <div className="w-full mt-[96px] px-4">
+    <div className="w-full mt-[92px] px-4">
       <ProgressSteps step1 step2 />
       <div className="mt-8 flex justify-center items-center">
         <form

@@ -44,16 +44,16 @@ const Profile = () => {
   };
 
   return (
-    <div className="container mx-auto mt-[110px] px-6 py-6 max-w-4xl">
-      <div className="bg-white shadow-lg rounded-lg p-8 w-full">
+    <div className="container mx-auto mt-[92px] px-6 py-6 max-w-4xl">
+      <div className="bg-white border border-black shadow-lg rounded-lg p-8 w-full">
         <h2 className="text-3xl font-bold mb-8 text-stone-900 text-center">
           Update Profile
         </h2>
-        <form onSubmit={submitHandler} className="space-y-6">
+        <form onSubmit={submitHandler} className="space-y-6 font-semibold">
           {/* Name and Email in one row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-stone-600 mb-2">Name</label>
+              <label className="block text-stone-800 mb-2">Name</label>
               <input
                 type="text"
                 placeholder="Enter name"

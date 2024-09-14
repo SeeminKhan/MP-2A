@@ -48,7 +48,7 @@ const Register = () => {
   };
 
   return (
-    <div className="mt-[96px] flex flex-col md:flex-row">
+    <div className="mt-[92px] flex flex-col md:flex-row">
       {/* Left Image Section */}
       <div className="w-1/2 hidden md:flex items-center justify-center pl-8">
         <img

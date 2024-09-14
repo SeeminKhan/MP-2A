@@ -65,7 +65,7 @@ const Product = () => {
 
   return (
     <>
-      <div className="mt-[96px]">
+      <div className="mt-[92px]">
         <div>
           <Link
             className="text-gray-700 font-semibold hover:underline ml-10"
