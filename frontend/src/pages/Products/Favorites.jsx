@@ -2,17 +2,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import {
   removeFromFavorites,
-  selectFavoriteProduct,
+  setFavorites,
 } from "../../redux/features/favorites/favoriteSlice";
 import { Link } from "react-router-dom";
+import {
+  addFavoriteToLocalStorage,
+  getFavoritesFromLocalStorage,
+  removeFavoriteFromLocalStorage,
+} from "../../Utils/localStorage";
+import HeartIcon from "./HeartIcon";
 
 const Favorites = () => {
   const dispatch = useDispatch();
-  const favorites = useSelector(selectFavoriteProduct);
+  const favorites = useSelector((state) => state.favorites) || [];
 
-  const removeFromFavoritesHandler = (id) => {
-    console.log("Removing product with ID:", id); // Debugging log
-    dispatch(removeFromFavorites(id));
+  const handleProductRemoval = (id) => {
+    // Find the product to remove
+    const product = favorites.find((p) => p._id === id);
+
+    if (product) {
+      dispatch(removeFromFavorites(product));
+      // Remove from local storage
+      removeFavoriteFromLocalStorage(id);
+    }
   };
 
   return (
@@ -35,10 +47,11 @@ const Favorites = () => {
             {favorites.map((product) => (
               <div
                 key={product._id}
-                className="bg-white shadow-lg p-4 flex flex-col items-center"
+                className="relative bg-white shadow-lg p-4 flex flex-col items-center"
               >
+
                 {/* Product Image */}
-                <div className="w-full h-full mb-4">
+                <div className="w-full h-60 mb-4">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -68,7 +81,7 @@ const Favorites = () => {
                     </div>
                     <button
                       className="text-stone-500 hover:text-red-500 text-xl ml-4"
-                      onClick={() => removeFromFavoritesHandler(product._id)}
+                      onClick={() => handleProductRemoval(product._id)}
                     >
                       <FaTrash />
                     </button>

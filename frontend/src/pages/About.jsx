@@ -2,7 +2,7 @@ import designerPhoto from "./unnamed.jpg"; // Update with actual path to the des
 
 const About = () => {
   return (
-    <div className="mt-[96px] w-full min-h-screen bg-white py-8 px-4 sm:px-6 lg:px-8">
+    <div className="mt-[92px] w-full min-h-screen bg-white py-8 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto flex flex-col items-center md:flex-row md:items-start">
         {/* Designer's Photo */}
         <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">

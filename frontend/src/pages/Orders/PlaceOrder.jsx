@@ -40,7 +40,7 @@ const PlaceOrder = () => {
   };
 
   return (
-    <div className="mt-[96px] px-6">
+    <div className="mt-[92px] px-6">
       <ProgressSteps step1 step2 step3 />
 
       <div className="container mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg max-w-4xl">
