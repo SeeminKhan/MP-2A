@@ -92,7 +92,7 @@ const Product = () => {
                   alt={product.name}
                   className="w-full h-auto rounded-lg object-cover"
                 />
-                <HeartIcon product={product} className="absolute top-4 right-4" />
+                <HeartIcon product={product} className="absolute top-4 right-6" />
               </div>
 
               {/* Right: Product Details */}
@@ -103,7 +103,7 @@ const Product = () => {
 
                 <p className="my-4 text-gray-600">{product.description}</p>
 
-                <p className="text-5xl font-extrabold text-black">${product.price}</p>
+                <p className="text-5xl font-extrabold text-black">₹ {product.price}</p>
 
                 {/* Product Info */}
                 <div className="flex flex-col md:flex-row justify-between my-8 text-gray-700">

@@ -87,7 +87,7 @@ const ProductDetails = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-auto rounded-lg object-cover"
+                  className="w-full h-auto object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
                 />
                 <HeartIcon product={product} className="absolute top-4 right-4" />
               </div>
@@ -96,7 +96,7 @@ const ProductDetails = () => {
               <div className="w-full lg:w-1/2 flex flex-col">
                 <h2 className="text-2xl font-semibold mb-4">{product.name}</h2>
                 <p className="text-gray-600 mb-4">{product.description}</p>
-                <p className="text-5xl font-extrabold mb-4">${product.price}</p>
+                <p className="text-5xl font-semibold mb-4">₹ {product.price}</p>
 
                 <div className="flex flex-col md:flex-row justify-between mb-8 text-gray-700">
                   <div className="flex flex-col mb-4 md:mb-0">
