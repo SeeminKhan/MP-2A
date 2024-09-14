@@ -87,7 +87,7 @@ const Home = () => {
       <div className="flex justify-center py-12">
         <a
           href="/shop"
-          className="inline-block text-black py-3 px-6 border border-black rounded-lg shadow-lg text-lg font-semibold transition-transform transform hover:scale-105"
+          className="inline-block bg-black text-white py-3 px-6 border rounded-lg shadow-lg text-lg font-semibold transition-transform transform hover:scale-105"
         >
           Shop Now
         </a>

@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // Import images from the local folder
-import image1 from "./SliderImg/slider1.jpg";
+import image1 from "./SliderImg/IMG_8707.jpeg";
 import image2 from "./SliderImg/slider2.jpg";
 import image3 from "./SliderImg/slider3.jpg";
 
@@ -13,17 +13,18 @@ const ProductCarousel = () => {
   const settings = {
     dots: true, // Show dots for navigation
     infinite: true,
-    speed: 500,
+    speed: 1000, // Increase the speed to improve slide transition smoothness
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
+    arrows: true, // Show arrows for navigation
+    autoplay: true, // Enable autoplay
+    autoplaySpeed: 3000, // Set the autoplay speed to 3 seconds
+    pauseOnHover: false, // Continue autoplay when hovering over the image
     responsive: [
       {
         breakpoint: 768, // For tablets and mobile devices
         settings: {
-          arrows: false, // Hide arrows on small screens
+          arrows: false, // Hide arrows on smaller screens
         },
       },
     ],
@@ -44,8 +45,8 @@ const ProductCarousel = () => {
             <img
               src={src}
               alt={alt}
-              className="w-full h-full object-cover" // Responsive image
-              style={{ height: '100vh' }} // Ensure image height is full viewport height
+              className="w-full h-full object-cover"
+              style={{ height: "100vh", width: "100%" }} // Ensure image height is full viewport height
             />
           </div>
         ))}

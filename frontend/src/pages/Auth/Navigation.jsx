@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "./LOGO1.jpg"
+import logo from "./LOGO1.jpg"; // Path to the logo image
 
 import { FaBars, FaTimes } from "react-icons/fa";
-
 import {
   ShoppingCart as ShoppingCartIcon,
   Favorite as FavoriteIcon,
@@ -75,10 +74,7 @@ const Navigation = () => {
       >
         <div className="flex justify-between items-center mb-6">
           <span className="text-3xl font-bold">Menu</span>
-          <FaTimes
-            className="text-2xl cursor-pointer"
-            onClick={toggleSidebar}
-          />
+          <FaTimes className="text-2xl cursor-pointer" onClick={toggleSidebar} />
         </div>
         <nav className="flex flex-col space-y-4">
           <Link
@@ -109,13 +105,6 @@ const Navigation = () => {
           >
             CART
           </Link>
-          {/* <Link
-            to="/collection"
-            className="text-xl hover:bg-gray-200 p-2"
-            onClick={toggleSidebar}
-          >
-            COLLECTION
-          </Link> */}
           <Link
             to="/about"
             className="text-xl hover:bg-gray-200 p-2"
@@ -140,14 +129,19 @@ const Navigation = () => {
         <div className="block md:hidden">
           <FaBars className="text-xl cursor-pointer mr-5" onClick={toggleSidebar} />
         </div>
-        {/* Left: Logo */}
+
+        {/* Left: Logo or Brand Name */}
         <div className="flex items-center flex-grow md:flex-grow-0">
           <Link to="/">
-            <img
-              src={logo} // Path to your logo image
-              alt="Brand Logo"
-              className="w-40 h-[70px]" // Adjust size as needed
-            />
+            {scrolling ? (
+              <img
+                src={logo} // Path to your logo image
+                alt="Brand Logo"
+                className="w-40 h-[70px]" // Adjust size as needed
+              />
+            ) : (
+              <span className="text-2xl font-extrabold">SHARMEENA KARIYANIYA</span> // Brand name
+            )}
           </Link>
         </div>
 
@@ -162,12 +156,6 @@ const Navigation = () => {
           <Link to="/skcircle" className="text-lg font-semibold hover:text-gray-700">
             SK CIRCLE
           </Link>
-          {/* <Link
-            to="/collection"
-            className="text-lg font-semibold hover:text-gray-700"
-          >
-            COLLECTION
-          </Link> */}
           <Link to="/about" className="text-lg font-semibold hover:text-gray-700">
             ABOUT
           </Link>
@@ -286,7 +274,7 @@ const Navigation = () => {
               to="/register"
               className="transition-transform hover:translate-y-1"
             >
-              <PersonAddIcon fontSize="medium"/>
+              <PersonAddIcon fontSize="medium" />
             </Link>
           )}
         </div>
