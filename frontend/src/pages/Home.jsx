@@ -6,6 +6,7 @@ import Slider from "./Products/ProductCarousel";
 import Product from "./Products/Product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import SCard from "../StyleCard/SCard";
 
 // Import local images
 import celeb1 from "./act1.jpeg";
@@ -63,6 +64,13 @@ const Home = () => {
         <h1 className="text-4xl font-bold text-black mb-10 text-center pb-6">
           Celebs in Sharmeena Kariyaniya
         </h1>
+
+        <div className="flex flex-row">
+          <SCard celeb={celeb2} name={"anita hasnandani"} />
+          <SCard celeb={celeb3} name={"anam mirza"} />
+          <SCard celeb={celeb4} name={"gauhar khan"} />
+          <SCard celeb={celeb4} name={"gauhar khan"} />
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-screen-lg w-full">
           {[celeb1, celeb2, celeb3, celeb4].map((image, index) => (
