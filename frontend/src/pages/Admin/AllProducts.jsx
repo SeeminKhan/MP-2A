@@ -55,7 +55,7 @@ const AllProducts = () => {
                     <div className="flex justify-between items-center mt-auto">
                       <Link
                         to={`/admin/product/update/${product._id}`}
-                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg hover:bg-gray-900 focus:outline-none"
+                        className="inline-flex items-center px-3 py-2 text-sm font-bold text-white bg-gray-800 rounded-lg hover:bg-gray-900 focus:outline-none"
                       >
                         Update Product
                         <svg

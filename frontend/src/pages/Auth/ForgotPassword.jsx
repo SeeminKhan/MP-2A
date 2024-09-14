@@ -27,7 +27,7 @@ const ForgotPassword = () => {
 
         <form onSubmit={submitHandler} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-black">
+            <label htmlFor="email" className="block text-sm font-bold text-black">
               Email Address
             </label>
             <input

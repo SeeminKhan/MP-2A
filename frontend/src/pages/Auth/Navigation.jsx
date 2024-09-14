@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "./LOGO1.jpg"; // Path to the logo image
 
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -25,6 +25,7 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [logoutApiCall] = useLogoutMutation();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,6 +57,8 @@ const Navigation = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const isActiveLink = (path) => location.pathname === path ? "border-b-2 border-black font-semibold" : "";
+
   return (
     <>
       {/* Overlay for Sidebar */}
@@ -79,35 +82,35 @@ const Navigation = () => {
         <nav className="flex flex-col space-y-4">
           <Link
             to="/"
-            className="text-xl hover:bg-gray-200 p-2"
+            className={`text-xl ${isActiveLink("/")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
             onClick={toggleSidebar}
           >
             HOME
           </Link>
           <Link
             to="/shop"
-            className="text-xl hover:bg-gray-200 p-2"
+            className={`text-xl ${isActiveLink("/shop")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
             onClick={toggleSidebar}
           >
             SHOP
           </Link>
           <Link
             to="/favorite"
-            className="text-xl hover:bg-gray-200 p-2"
+            className={`text-xl ${isActiveLink("/favorite")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
             onClick={toggleSidebar}
           >
             FAVOURITES
           </Link>
           <Link
             to="/cart"
-            className="text-xl hover:bg-gray-200 p-2"
+            className={`text-xl ${isActiveLink("/cart")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
             onClick={toggleSidebar}
           >
             CART
           </Link>
           <Link
             to="/about"
-            className="text-xl hover:bg-gray-200 p-2"
+            className={`text-xl ${isActiveLink("/about")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
             onClick={toggleSidebar}
           >
             ABOUT
@@ -147,16 +150,16 @@ const Navigation = () => {
 
         {/* Center: Navigation Links (Hidden on Small Screens) */}
         <div className="hidden md:flex items-center justify-center space-x-8">
-          <Link to="/" className="text-lg font-semibold hover:text-gray-700">
+          <Link to="/" className={`text-lg font-bold ${isActiveLink("/")}`}>
             HOME
           </Link>
-          <Link to="/shop" className="text-lg font-semibold hover:text-gray-700">
+          <Link to="/shop" className={`text-lg font-bold ${isActiveLink("/shop")}`}>
             SHOP
           </Link>
-          <Link to="/skcircle" className="text-lg font-semibold hover:text-gray-700">
+          <Link to="/skcircle" className={`text-lg font-bold ${isActiveLink("/skcircle")}`}>
             SK CIRCLE
           </Link>
-          <Link to="/about" className="text-lg font-semibold hover:text-gray-700">
+          <Link to="/about" className={`text-lg font-bold ${isActiveLink("/about")}`}>
             ABOUT
           </Link>
         </div>
@@ -197,7 +200,7 @@ const Navigation = () => {
                 />
               </button>
               {dropdownOpen && (
-                <ul className="absolute right-0 mt-2 w-48 bg-white text-black text-sm font-medium shadow-lg rounded-md">
+                <ul className="absolute right-0 mt-2 w-48 bg-white text-black text-sm font-bold shadow-lg rounded-md">
                   {userInfo.isAdmin && (
                     <>
                       <li>
@@ -271,8 +274,8 @@ const Navigation = () => {
             </div>
           ) : (
             <Link
-              to="/register"
-              className="transition-transform hover:translate-y-1"
+              to="/login"
+              className="flex items-center transition-transform hover:translate-y-1"
             >
               <PersonAddIcon fontSize="medium" />
             </Link>

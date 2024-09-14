@@ -97,7 +97,7 @@ const Navigation = () => {
                 />
               </button>
               {dropdownOpen && (
-                <ul className="absolute right-0 mt-2 w-48 bg-white text-black text-sm font-medium shadow-lg rounded-md">
+                <ul className="absolute right-0 mt-2 w-48 bg-white text-black text-sm font-bold shadow-lg rounded-md">
                   {userInfo.isAdmin && (
                     <>
                       <li>
@@ -181,7 +181,7 @@ const Navigation = () => {
       </div>
 
       <div
-        className={`shadow-lg shadow-black/5 fixed top-16 left-0 w-full p-2 flex justify-center items-center space-x-8 z-40 font-medium transition-all ${
+        className={`shadow-lg shadow-black/5 fixed top-16 left-0 w-full p-2 flex justify-center items-center space-x-8 z-40 font-bold transition-all ${
           scrolling ? "bg-white text-black" : "bg-transparent text-black"
         }`}
       >

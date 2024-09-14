@@ -17,46 +17,43 @@ const ProductCard = ({ p }) => {
   };
 
   return (
-    <div className="max-w-sm bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl overflow-hidden">
+    <div className="max-w-sm bg-white shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl overflow-hidden">
       <section className="relative">
         <Link to={`/product/${p._id}`}>
           <div className="w-full h-[400px] relative overflow-hidden">
             <img
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110"
               src={p.image}
               alt={p.name}
             />
-            <span className="absolute bottom-3 right-3 bg-black text-white text-sm font-medium px-2.5 py-0.5 rounded-full">
-              {p?.brand}
-            </span>
           </div>
         </Link>
         <HeartIcon product={p} />
       </section>
 
       <div className="p-4">
-        <div className="flex justify-between items-center">
-          <h5 className="text-xl font-semibold text-black">{p?.name}</h5>
-          <p className="text-black font-semibold">
-            {p?.price?.toLocaleString("en-US", {
+        <div className="flex justify-between items-center mb-2">
+          <h5 className="text-xl font-semibold text-gray-900">{p?.name}</h5>
+          <p className="text-gray-900 font-semibold text-lg"> 
+            {p?.price?.toLocaleString("en-IN", {
               style: "currency",
-              currency: "USD",
+              currency: "INR",
             })}
           </p>
         </div>
 
-        <p className="mt-2 mb-3 text-gray-600">
-          {p?.description?.substring(0, 60)} ...
+        <p className="text-gray-700 mb-4">
+          {p?.description?.substring(0, 60)}...
         </p>
 
         <section className="flex justify-between items-center">
           <Link
             to={`/product/${p._id}`}
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-pink-300"
+            className="inline-flex items-center px-4 py-2 text-sm font-bold text-center text-white bg-black rounded-full hover:bg-gray-800 transition duration-300 ease-in-out"
           >
             Read More
             <svg
-              className="w-3.5 h-3.5 ml-2"
+              className="w-4 h-4 ml-2"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -73,10 +70,10 @@ const ProductCard = ({ p }) => {
           </Link>
 
           <button
-            className="p-2 rounded-full hover:bg-gray-200 transition"
+            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition duration-300 ease-in-out"
             onClick={() => addToCartHandler(p, 1)}
           >
-            <AiOutlineShoppingCart size={25} />
+            <AiOutlineShoppingCart size={25} className="text-gray-800" />
           </button>
         </section>
       </div>

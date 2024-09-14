@@ -29,6 +29,7 @@ const Home = () => {
 
   return (
     <>
+    <div className="">
       {/* Full-screen height slider */}
       <div className="h-screen w-full">
         <Slider images={sliderImages} />
@@ -47,7 +48,7 @@ const Home = () => {
             {isError?.data?.message || isError?.error}
           </Message>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-screen-lg w-full px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-screen-lg w-full">
             {data.products.slice(0, 4).map((product) => (
               <div key={product._id} className="flex justify-center">
                 <Product product={product} />
@@ -58,12 +59,12 @@ const Home = () => {
       </div>
 
       {/* Celebs Section */}
-      <div className="flex flex-col items-center pt-12">
+      <div className="flex flex-col items-center">
         <h1 className="text-4xl font-bold text-black mb-10 text-center pb-6">
           Celebs in Sharmeena Kariyaniya
         </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-screen-lg w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-screen-lg w-full">
           {[celeb1, celeb2, celeb3, celeb4].map((image, index) => (
             <div
               key={index}
@@ -122,6 +123,7 @@ const Home = () => {
       >
         <FontAwesomeIcon icon={faWhatsapp} size="3x" />
       </a>
+      </div>
     </>
   );
 };
