@@ -40,8 +40,8 @@ const Login = () => {
   };
 
   return (
-    <div className="mt-[92px] flex">
-      {/* Left Image Section */}
+<div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] flex">
+{/* Left Image Section */}
       <div className="w-1/2 hidden md:flex items-center justify-center pl-8">
         <img
           src={Img}
@@ -53,7 +53,10 @@ const Login = () => {
       {/* Right Form Section */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-white p-8">
         <div className="max-w-lg w-full space-y-8">
-          <h1 className="text-4xl font-bold text-black mb-4">Sign In</h1>
+        <div className="w-full sm:w-auto flex justify-center items-center h-full">
+  <p className="text-center text-3xl font-bold">Sign In</p>
+</div>
+
 
           <form onSubmit={submitHandler} className="space-y-6">
             <div>

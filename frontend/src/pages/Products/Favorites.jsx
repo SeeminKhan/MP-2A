@@ -28,9 +28,9 @@ const Favorites = () => {
   };
 
   return (
-    <div className="container mx-auto mt-[92px] px-8">
+    <div className="container mx-auto mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] px-8">
       {favorites.length === 0 ? (
-        <div className="text-center text-lg text-stone-600">
+        <div className="flex h-[26rem] justify-center items-center text-center text-lg font-semibold text-black">
           No favorite products added yet{" "}
           <Link to="/shop" className="underline text-stone-800">
             Go To Shop

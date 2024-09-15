@@ -65,7 +65,7 @@ const Product = () => {
 
   return (
     <>
-      <div className="mt-[92px]">
+      <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px]">
         <div>
           <Link
             className="text-gray-700 font-semibold hover:underline ml-10"
@@ -92,7 +92,7 @@ const Product = () => {
                   alt={product.name}
                   className="w-full h-auto rounded-lg object-cover"
                 />
-                <HeartIcon product={product} className="absolute top-4 right-6" />
+                <HeartIcon product={product} className="absolute top-4 right-2 z-10" />
               </div>
 
               {/* Right: Product Details */}

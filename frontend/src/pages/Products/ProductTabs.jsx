@@ -35,7 +35,7 @@ const ProductTabs = ({
           <div
             key={index}
             className={`p-4 cursor-pointer text-lg transition-all duration-300 ease-in-out ${
-              activeTab === index + 1 ? "font-bold text-black" : "text-gray-500"
+              activeTab === index + 1 ? "font-bold text-black" : "text-gray-700"
             } hover:text-black border-b md:border-none md:text-left`}
             onClick={() => handleTabClick(index + 1)}
           >

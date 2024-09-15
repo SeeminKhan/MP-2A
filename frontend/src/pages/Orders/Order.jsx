@@ -92,7 +92,7 @@ const Order = () => {
   ) : error ? (
     <Messsage variant="danger">{error.data.message}</Messsage>
   ) : (
-    <div className="container mx-auto mt-[92px] px-4">
+    <div className="container mx-auto mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] px-4">
       {/* First Section: Table */}
       <div className="w-full overflow-x-auto">
         <div className="border border-gray-300">
@@ -125,7 +125,7 @@ const Order = () => {
                     <td className="p-2 text-center">{item.qty}</td>
                     <td className="p-2 text-center">{item.price}</td>
                     <td className="p-2 text-center">
-                      $ {(item.qty * item.price).toFixed(2)}
+                    ₹ {(item.qty * item.price).toFixed(2)}
                     </td>
                   </tr>
                 ))}

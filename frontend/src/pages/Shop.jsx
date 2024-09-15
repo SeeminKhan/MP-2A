@@ -146,11 +146,11 @@ const Shop = () => {
           </div>
         </div> */}
 
-        <div className="px-3 w-full">
+        <div className="px-3 mb-4 w-full">
           {/* <h2 className="text-2xl font-semibold text-center text-black mb-4">
             Showing all ({products?.length} Products)
           </h2> */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-6">
             {products.length === 0 ? (
               <Loader />
             ) : (
