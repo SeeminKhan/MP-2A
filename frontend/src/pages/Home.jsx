@@ -7,6 +7,7 @@ import Product from "./Products/Product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import SCard from "../StyleCard/SCard";
+import ImageSlider from "../StyleCard/ImgSlider";
 
 // Import local images
 import celeb1 from "./act1.jpeg";
@@ -64,6 +65,8 @@ const Home = () => {
         <h1 className="text-4xl font-bold text-black mb-10 text-center pb-6">
           Celebs in Sharmeena Kariyaniya
         </h1>
+
+        <ImageSlider />
 
         <div className="flex flex-row">
           <SCard celeb={celeb2} name={"anita hasnandani"} />

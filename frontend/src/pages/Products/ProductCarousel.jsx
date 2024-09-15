@@ -32,9 +32,9 @@ const ProductCarousel = () => {
 
   // Array of image objects
   const images = [
-    { src: image1, alt: "Image 1" },
+    { src: image1, alt: "Image 3" },
     { src: image2, alt: "Image 2" },
-    { src: image3, alt: "Image 3" },
+    { src: image3, alt: "Image 1" },
   ];
 
   return (
