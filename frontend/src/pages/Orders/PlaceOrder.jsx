@@ -89,16 +89,16 @@ const PlaceOrder = () => {
           <div className="flex flex-col md:flex-row justify-between bg-white text-black p-6 border border-gray-700 rounded-lg">
             <ul className="text-lg mb-4 md:mb-0">
               <li className="mb-2">
-                <span className="font-semibold">Items:</span> ${cart.itemsPrice}
+                <span className="font-semibold">Items:</span> ₹ {cart.itemsPrice}
               </li>
               <li className="mb-2">
-                <span className="font-semibold">Shipping:</span> ${cart.shippingPrice}
+                <span className="font-semibold">Shipping:</span> ₹ {cart.shippingPrice}
               </li>
               <li className="mb-2">
-                <span className="font-semibold">Tax:</span> ${cart.taxPrice}
+                <span className="font-semibold">Tax:</span> ₹ {cart.taxPrice}
               </li>
               <li>
-                <span className="font-semibold">Total:</span> ${cart.totalPrice}
+                <span className="font-semibold">Total:</span> ₹ {cart.totalPrice}
               </li>
             </ul>
 

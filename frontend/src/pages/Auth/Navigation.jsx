@@ -172,7 +172,7 @@ const Navigation = () => {
           >
             <ShoppingCartIcon fontSize="medium" />
             {cartItems.length > 0 && (
-              <span className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full">
+              <span className="absolute -top-2 -right-2 flex items-center justify-center w-4 h-4 text-xs text-white bg-black rounded-full">
                 {cartItems.reduce((a, c) => a + c.qty, 0)}
               </span>
             )}

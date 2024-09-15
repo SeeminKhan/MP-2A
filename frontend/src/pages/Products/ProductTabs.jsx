@@ -132,12 +132,12 @@ const ProductTabs = ({
               {data.length === 0 ? (
                 <Loader />
               ) : (
-                data.slice(0, 2).map((product) => (
+                data.slice(0, 3).map((relatedProduct) => (
                   <div
-                    key={product._id}
+                    key={relatedProduct._id}
                     className="bg-white p-2 rounded-lg flex-1 max-w-[200px] md:max-w-[250px]"
                   >
-                    <SmallProduct product={product} />
+                    <SmallProduct product={relatedProduct} />
                   </div>
                 ))
               )}
