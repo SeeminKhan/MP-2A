@@ -33,6 +33,7 @@ import Cart from "./pages/Cart.jsx";
 import Shop from "./pages/Shop.jsx";
 import About from "./pages/About.jsx";
 import Skcircle from "./pages/Skcircle.jsx";
+import Atelier from "./pages/Atelier.jsx";
 
 import Shipping from "./pages/Orders/Shipping.jsx";
 import PlaceOrder from "./pages/Orders/PlaceOrder.jsx";
@@ -55,6 +56,7 @@ const router = createBrowserRouter(
       <Route path="/shop" element={<Shop />} />
       <Route path="/about" element={<About />} />
       <Route path="/skcircle" element={<Skcircle/>} />
+      <Route path="/atelier" element={<Atelier/>} />
 
 
 

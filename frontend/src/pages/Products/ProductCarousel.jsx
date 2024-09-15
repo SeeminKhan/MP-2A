@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import image1 from "./SliderImg/IMG_8707.jpeg";
-import image2 from "./SliderImg/slider2.jpg";
+import image1 from "./SliderImg/slider5.jpeg";
+import image2 from "./SliderImg/slider4.jpeg";
 import image3 from "./SliderImg/slider3.jpg";
 
 const images = [
@@ -42,23 +42,23 @@ const ProductCarousel = () => {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden md:h-full bg-white">
+    <div className="relative w-full h-screen md:h-full overflow-hidden bg-white">
       <div className="relative w-full h-full">
         {/* Slider */}
         <Slider {...settings} className="w-full h-full">
           {images.map((image, index) => (
-            <div key={index} className="w-full h-full flex justify-center items-center">
+            <div key={index} className="w-full h-screen flex justify-center items-center">
               <img
                 src={image.src}
                 alt={image.heading}
-                className="w-full h-full object-fill"
+                className="w-full h-full object-cover" // Make sure images scale responsively
               />
             </div>
           ))}
         </Slider>
 
         {/* Custom Previous/Next Buttons */}
-        <div className="absolute top-1/2 left-4 transform -translate-y-1/2 flex flex-col space-y-4 md:space-y-6 z-20">
+        <div className="absolute top-1/2 left-4 transform -translate-y-1/2 flex z-20">
           <button
             onClick={handlePrev}
             className="bg-white text-black p-2 md:p-3 rounded-full hover:bg-gray-200 transition"
@@ -67,10 +67,10 @@ const ProductCarousel = () => {
             &lt;
           </button>
         </div>
-        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex flex-col space-y-4 md:space-y-6 z-20">
+        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex z-20">
           <button
             onClick={handleNext}
-            className="bg-white text-black p-2 rounded-full hover:bg-gray-200 transition"
+            className="bg-white text-black p-2 md:p-3 rounded-full hover:bg-gray-200 transition"
             aria-label="Next Slide"
           >
             &gt;
@@ -82,7 +82,7 @@ const ProductCarousel = () => {
           {images.map((_, index) => (
             <div
               key={index}
-              className={`w-2 h-2  rounded-full cursor-pointer ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
+              className={`w-2 h-2 md:w-3 md:h-3 rounded-full cursor-pointer ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
               onClick={() => handleThumbnailClick(index)}
               aria-label={`Slide ${index + 1} indicator`}
             />

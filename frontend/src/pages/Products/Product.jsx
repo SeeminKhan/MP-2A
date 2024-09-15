@@ -9,7 +9,7 @@ const Product = ({ product }) => {
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-[18rem] object-cover transition-transform duration-500 ease-in-out hover:scale-110"
+          className="w-full h-[20rem] object-cover transition-transform duration-500 ease-in-out hover:scale-110"
         />
 
         {/* Heart Icon */}
