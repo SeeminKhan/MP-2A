@@ -1,47 +1,58 @@
-import designerPhoto from "./unnamed.jpg"; // Update with actual path to the designer's photo
+import React from "react";
+import { Link } from "react-router-dom";
+
+import celeb1 from "./Atelier.jpg";
+import celeb2 from "./atelier3.jpg";
+import celeb3 from "./atelier5.jpg";
+import celeb4 from "./AtelierP2.jpg";
+
+
+
+// Sample images for the custom designs
+const customDesigns = [
+  { id: 1, img:celeb1, title: "Design 1" },
+  { id: 2, img: celeb2, title: "Design 2" },
+  { id: 3, img: celeb3, title: "Design 3" },
+  { id: 4, img: celeb4, title: "Design 4" },
+];
 
 const Atelier = () => {
   return (
-    <div className="mt-[92px] w-full min-h-screen bg-white py-8 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto flex flex-col items-center md:flex-row md:items-start">
-        {/* Designer's Photo */}
-        <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
-          <img
-            src={designerPhoto}
-            alt="Fashion Designer"
-            className="w-full max-w-sm h-auto rounded-lg shadow-lg object-cover"
-          />
-        </div>
+    <div className=" mt-[92px] bg-white text-black pb-10 px-5">
+      {/* Description */}
+      <div className="text-center mb-8">
+        {/* <h2 className="text-4xl font-bold mb-4">Atelier</h2> */}
+        <p className="text-lg max-w-2xl mx-auto">
+          The Atelier is a collection where custom designs are meticulously crafted by <strong>Sharmeena Kariyaniya</strong>. Each piece is designed to reflect your individuality, blending creativity with craftsmanship to deliver bespoke fashion tailored just for you.
+        </p>
+      </div>
 
-        {/* Designer's Information */}
-        <div className="w-full md:w-1/2 md:pl-8 flex flex-col items-center md:items-start">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4 text-center md:text-left">
-            The Brand
-          </h1>
-          <p className="text-gray-700 mb-4 text-center md:text-left">
-            Sharmeena Kariyaniya is a luxury, women’s ready-to-wear label
-            operating from Mumbai since 2018. Strongly rooted in the now but
-            with a keen eye on the future, Our brand aims in delivering twisted
-            modernity, neo-luxury, supreme craftsmanship, fine tailoring and
-            heterodox lifestyle. Our perspective on self-expression and freedom
-            of speech is built into the fabric of the brand. We offer
-            season-less, ethically produced clothing and accessories.
-          </p>
-          <h1 className="text-3xl font-bold text-gray-900 mb-4 text-center md:text-left">
-            The Designer
-          </h1>
-          <p className="text-gray-700 mb-4 text-center md:text-left">
-            Born in 1994, Sharmeena Kariyaniya is founder and creative director
-            of her label. She holds a bachelor's degree in Textile and Apparel
-            Designing from the SNDT university, Juhu. Since the brand initiation
-            in 2018, she customised outfits for her personal clients. She has
-            experience of 6 years in the Fashion industry in multiple roles and
-            has a great ocean of knowledge of practical fashion. Hailing from a
-            background where her dad was the second biggest leather exporter
-            from Mumbai and her mom a shopaholic she instantly had established
-            love for fashion at a very young age.
-          </p>
-        </div>
+      {/* Custom Design Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {customDesigns.map((design) => (
+          <div key={design.id} className="custom-card bg-white shadow-lg overflow-hidden">
+            <img
+              src={design.img}
+              alt={design.title}
+              className="w-full h-full object-cover"
+            />
+            {/* <div className="p-4">
+              <h3 className="text-xl font-semibold text-center">{design.title}</h3>
+            </div> */}
+          </div>
+        ))}
+      </div>
+
+      {/* WhatsApp Button */}
+      <div className="text-center">
+        <a
+          href="https://wa.me/919876543210" // Replace with Sharmeena Kariyaniya's WhatsApp number
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-black text-white py-3 px-6 rounded-full text-lg font-bold shadow-lg hover:bg-gray-800 transition duration-300"
+        >
+          Customize Your Own
+        </a>
       </div>
     </div>
   );
