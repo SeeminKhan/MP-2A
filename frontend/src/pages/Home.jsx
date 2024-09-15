@@ -132,7 +132,7 @@ const Home = () => {
         </a>
       </div>
 
-      {/* Video Section */}
+      {/* Video Section
       <div className="flex flex-col items-center py-12 px-4">
         <h1 className="text-3xl md:text-4xl font-bold text-black mb-8 text-center">
           Watch Our Video
@@ -147,8 +147,8 @@ const Home = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
 
       {/* WhatsApp Icon */}
       <a
