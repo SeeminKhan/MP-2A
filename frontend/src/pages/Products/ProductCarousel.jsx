@@ -1,56 +1,94 @@
-import React from "react";
+import React, { useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-// Import images from the local folder
 import image1 from "./SliderImg/IMG_8707.jpeg";
 import image2 from "./SliderImg/slider2.jpg";
 import image3 from "./SliderImg/slider3.jpg";
 
+const images = [
+  { src: image1, heading: 'Image 1', description: 'Description for Image 1' },
+  { src: image2, heading: 'Image 2', description: 'Description for Image 2' },
+  { src: image3, heading: 'Image 3', description: 'Description for Image 3' },
+];
+
 const ProductCarousel = () => {
-  // Slider settings
-  const settings = {
-    dots: true, // Show dots for navigation
-    infinite: true,
-    speed: 1000, // Increase the speed to improve slide transition smoothness
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true, // Show arrows for navigation
-    autoplay: true, // Enable autoplay
-    autoplaySpeed: 3000, // Set the autoplay speed to 3 seconds
-    pauseOnHover: false, // Continue autoplay when hovering over the image
-    responsive: [
-      {
-        breakpoint: 768, // For tablets and mobile devices
-        settings: {
-          arrows: false, // Hide arrows on smaller screens
-        },
-      },
-    ],
+  const [sliderRef, setSliderRef] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleNext = () => {
+    if (sliderRef) sliderRef.slickNext();
   };
 
-  // Array of image objects
-  const images = [
-    { src: image1, alt: "Image 3" },
-    { src: image2, alt: "Image 2" },
-    { src: image3, alt: "Image 1" },
-  ];
+  const handlePrev = () => {
+    if (sliderRef) sliderRef.slickPrev();
+  };
+
+  const handleThumbnailClick = (index) => {
+    if (sliderRef) sliderRef.slickGoTo(index);
+  };
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false, // Hide default slick arrows to use custom ones
+    autoplay: true,
+    autoplaySpeed: 3000,
+    beforeChange: (oldIndex, newIndex) => setCurrentIndex(newIndex),
+    ref: setSliderRef, // Attach ref to slider instance
+  };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      <Slider {...settings} className="w-full h-full">
-        {images.map(({ src, alt }, index) => (
-          <div key={index} className="w-full h-full flex justify-center items-center">
-            <img
-              src={src}
-              alt={alt}
-              className="w-full h-full object-cover"
-              style={{ height: "100vh", width: "100%" }} // Ensure image height is full viewport height
+    <div className="relative w-full h-screen overflow-hidden md:h-full bg-white">
+      <div className="relative w-full h-full">
+        {/* Slider */}
+        <Slider {...settings} className="w-full h-full">
+          {images.map((image, index) => (
+            <div key={index} className="w-full h-full flex justify-center items-center">
+              <img
+                src={image.src}
+                alt={image.heading}
+                className="w-full h-full object-fill"
+              />
+            </div>
+          ))}
+        </Slider>
+
+        {/* Custom Previous/Next Buttons */}
+        <div className="absolute top-1/2 left-4 transform -translate-y-1/2 flex flex-col space-y-4 md:space-y-6 z-20">
+          <button
+            onClick={handlePrev}
+            className="bg-white text-black p-2 md:p-3 rounded-full hover:bg-gray-200 transition"
+            aria-label="Previous Slide"
+          >
+            &lt;
+          </button>
+        </div>
+        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex flex-col space-y-4 md:space-y-6 z-20">
+          <button
+            onClick={handleNext}
+            className="bg-white text-black p-2 rounded-full hover:bg-gray-200 transition"
+            aria-label="Next Slide"
+          >
+            &gt;
+          </button>
+        </div>
+
+        {/* Indicator Dots */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-4 z-20">
+          {images.map((_, index) => (
+            <div
+              key={index}
+              className={`w-2 h-2  rounded-full cursor-pointer ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
+              onClick={() => handleThumbnailClick(index)}
+              aria-label={`Slide ${index + 1} indicator`}
             />
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

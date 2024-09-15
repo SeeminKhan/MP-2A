@@ -6,7 +6,6 @@ import Slider from "./Products/ProductCarousel";
 import Product from "./Products/Product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import SCard from "../StyleCard/SCard";
 import ImageSlider from "../StyleCard/ImgSlider";
 
 // Import local images
@@ -14,6 +13,9 @@ import celeb1 from "./act1.jpeg";
 import celeb2 from "./act2.jpg";
 import celeb3 from "./act3.jpg";
 import celeb4 from "./act4.jpg";
+import AtelierImg from "./atelier5.jpg";
+import AtelierImg2 from "./AtelierP1.jpg";
+import AtelierImg3 from "./AtelierP3.jpg";
 
 const Home = () => {
   const { keyword } = useParams();
@@ -60,20 +62,61 @@ const Home = () => {
         )}
       </div>
 
+
+     {/* {about} */}
+     <div className="relative w-full md:h-[900px] bg-black overflow-hidden">
+        {/* Background Image */}
+        <img
+          src={AtelierImg2} // Choose your preferred image here
+          alt="Atelier image"
+          className="object-cover w-full h-full opacity-80"
+        />
+
+        {/* Text Overlay */}
+        <div className="absolute bottom-8 left-8 text-white z-10 space-y-4">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-wide">
+            Atelier Collection
+          </h1>
+          <p className="text-sm md:text-lg">
+            Discover exclusive designs and craftsmanship
+          </p>
+        </div>
+
+        {/* Decorative Gradient Element */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
+      </div>
+
+
+    {/* Atelier Section */}
+      <div className="relative w-full h-[600px] md:h-[900px] bg-black overflow-hidden">
+        {/* Background Image */}
+        <img
+          src={AtelierImg3} // Choose your preferred image here
+          alt="Atelier image"
+          className="object-cover w-full h-full opacity-80"
+        />
+
+        {/* Text Overlay */}
+        <div className="absolute bottom-8 left-8 text-white z-10 space-y-4">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-wide">
+            Atelier Collection
+          </h1>
+          <p className="text-sm md:text-lg">
+            Discover exclusive designs and craftsmanship
+          </p>
+        </div>
+
+        {/* Decorative Gradient Element */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
+      </div>
+
+
+
       {/* Celebs Section */}
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mt-8">
         <h1 className="text-4xl font-bold text-black mb-10 text-center pb-6">
           Celebs in Sharmeena Kariyaniya
         </h1>
-
-        <ImageSlider />
-
-        <div className="flex flex-row">
-          <SCard celeb={celeb2} name={"anita hasnandani"} />
-          <SCard celeb={celeb3} name={"anam mirza"} />
-          <SCard celeb={celeb4} name={"gauhar khan"} />
-          <SCard celeb={celeb4} name={"gauhar khan"} />
-        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-screen-lg w-full">
           {[celeb1, celeb2, celeb3, celeb4].map((image, index) => (
@@ -104,6 +147,7 @@ const Home = () => {
           Shop Now
         </a>
       </div>
+
 
       {/* Video Section */}
       <div className="flex flex-col items-center py-12">

@@ -88,6 +88,13 @@ const Navigation = () => {
             HOME
           </Link>
           <Link
+            to="/atelier"
+            className={`text-xl ${isActiveLink("/atelier")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
+            onClick={toggleSidebar}
+          >
+            ATELIER 
+          </Link>
+          <Link
             to="/shop"
             className={`text-xl ${isActiveLink("/shop")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
             onClick={toggleSidebar}
@@ -155,6 +162,9 @@ const Navigation = () => {
           </Link>
           <Link to="/shop" className={`text-lg font-bold ${isActiveLink("/shop")}`}>
             SHOP
+          </Link>
+          <Link to="/atelier" className={`text-lg font-bold ${isActiveLink("/atelier")}`}>
+            ATELIER
           </Link>
           <Link to="/skcircle" className={`text-lg font-bold ${isActiveLink("/skcircle")}`}>
             SK CIRCLE

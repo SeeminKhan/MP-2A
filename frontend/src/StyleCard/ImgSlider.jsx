@@ -30,7 +30,7 @@ const Slider = () => {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black m-4">
+    <div className="relative w-full h-screen overflow-hidden bg-white">
       <div className="relative w-full h-full">
         <div className="absolute inset-0 w-full h-full flex justify-center items-center">
           <Transition
