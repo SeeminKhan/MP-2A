@@ -1,10 +1,10 @@
 import React from "react";
 
 // Import images
-import celeb1 from "./act1.jpeg";
-import celeb2 from "./act2.jpg";
-import celeb3 from "./act3.jpg";
-import celeb4 from "./act4.jpg";
+import celeb1 from "../images/act1.jpeg";
+import celeb2 from "../images/act2.jpg";
+import celeb3 from "../images/act3.jpg";
+import celeb4 from "../images/act4.jpg";
 
 const Skcircle = () => {
   // Define actor details here

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import image1 from "./SliderImg/slider5.jpeg";
-import image2 from "./SliderImg/slider4.jpeg";
-import image3 from "./SliderImg/slider3.jpg";
+import image1 from "../../images/SliderImg/slider5.jpeg";
+import image2 from "../../images/SliderImg/slider4.jpeg";
+import image3 from "../../images/SliderImg/slider3.jpg";
 
 const images = [
   { src: image1, heading: 'Image 1', description: 'Description for Image 1' },

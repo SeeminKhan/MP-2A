@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import logo from "./LOGO1.jpg"; // Path to the logo image
+import logo from "../../images/LOGO1.jpg"; // Path to the logo image
 
 import { FaBars, FaTimes } from "react-icons/fa";
 import {

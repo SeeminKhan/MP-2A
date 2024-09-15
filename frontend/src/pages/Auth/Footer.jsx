@@ -9,12 +9,17 @@ const Footer = () => {
   const [isLegalOpen, setIsLegalOpen] = useState(false);
 
   return (
-    <div className="bg-black text-white py-6 px-4 sm:px-6 md:px-8 lg:px-10">
+    <div className="bg-black text-white py-3 px-4 sm:px-6 md:px-8 lg:px-10">
       {/* Book an Appointment */}
       <div className="text-center py-4 border-b border-gray-700">
-        <button className="bg-black hover:bg-stone-800 text-white py-2 px-6 rounded-lg text-base sm:text-lg transition-all duration-300 ease-in-out">
+      <a
+          href="https://wa.me/7208144910" // Replace with Sharmeena Kariyaniya's WhatsApp number
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-black text-white py-4 px-6 rounded-full text-lg font-bold shadow-lg hover:bg-gray-800 transition duration-300"
+        >
           Book an Appointment
-        </button>
+        </a>
       </div>
 
      

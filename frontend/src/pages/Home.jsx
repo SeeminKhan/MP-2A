@@ -9,11 +9,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 // Import local images
-import celeb1 from "./act2.jpg";
-import celeb2 from "./act3.jpg";
-import celeb3 from "./act4.jpg";
-import AtelierImg2 from "./AtelierP1.jpg";
-import AtelierImg3 from "./AtelierP3.jpg";
+import celeb1 from "../images/act2.jpg";
+import celeb2 from "../images/act3.jpg";
+import celeb3 from "../images/act4.jpg";
+import AtelierImg2 from "../images/AtelierP1.jpg";
+import AtelierImg3 from "../images/6.jpg";
 
 const Home = () => {
   const { keyword } = useParams();
@@ -27,7 +27,7 @@ const Home = () => {
   ];
 
   // WhatsApp number (replace with the actual WhatsApp number)
-  const whatsappNumber = "7304147079";
+  const whatsappNumber = "7208144910";
 
   return (
     <div className="overflow-x-hidden">
@@ -37,8 +37,8 @@ const Home = () => {
       </div>
 
       {/* Special Products Section */}
-      <div className="flex flex-col items-center py-12 px-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-black mb-8 text-center">
+      <div className="flex flex-col items-center py-10 px-4">
+        <h1 className="text-2xl md:text-4xl font-bold text-black mb-8 text-center">
           Our Special Products
         </h1>
 
@@ -60,7 +60,7 @@ const Home = () => {
       </div>
 
       {/* About Section */}
-      <div className="relative w-full md:h-[900px] bg-black overflow-hidden">
+      <div className="relative w-full md:h-[850px] bg-black overflow-hidden">
         {/* Background Image */}
         <img
           src={AtelierImg2} // Choose your preferred image here
@@ -83,7 +83,7 @@ const Home = () => {
       </div>
 
       {/* Atelier Section */}
-      <div className="relative w-full h-[600px] md:h-[900px] bg-black overflow-hidden">
+      {/* <div className="relative w-full h-[600px] md:h-[900px] bg-black overflow-hidden">
         <img
           src={AtelierImg3}
           alt="Atelier image"
@@ -98,11 +98,11 @@ const Home = () => {
           </p>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
-      </div>
+      </div> */}
 
       {/* Celebs Section */}
-      <div className="flex flex-col items-center py-12 px-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-black mb-10 text-center">
+      <div className="flex flex-col items-center pt-12 pb-6 px-4">
+        <h1 className="text-2xl md:text-4xl font-bold text-black mb-6 text-center">
           Celebs in Sharmeena Kariyaniya
         </h1>
 
@@ -123,7 +123,7 @@ const Home = () => {
       </div>
 
       {/* Shop Button */}
-      <div className="flex justify-center py-12">
+      <div className="flex justify-center mb-6">
         <a
           href="/shop"
           className="inline-block bg-black text-white py-3 px-6 border rounded-lg shadow-lg text-lg font-semibold transition-transform transform hover:scale-105"
@@ -131,24 +131,14 @@ const Home = () => {
           Shop Now
         </a>
       </div>
-
-      {/* Video Section
-      <div className="flex flex-col items-center py-12 px-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-black mb-8 text-center">
-          Watch Our Video
-        </h1>
-        <div className="relative w-full max-w-4xl">
-          <iframe
-            width="100%"
-            height="500"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div> */}
-      {/* </div> */}
+      {/* Atelier Section */}
+      <div className="relative w-full md:h-[480px] bg-black overflow-hidden">
+        <img
+          src={AtelierImg3}
+          alt="Atelier image"
+          className="object-cover w-full h-full opacity-80"
+        />
+      </div>
 
       {/* WhatsApp Icon */}
       <a

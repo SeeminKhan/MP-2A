@@ -1,15 +1,15 @@
-import designerPhoto from "./unnamed.jpg"; // Update with actual path to the designer's photo
+import designerPhoto from "../images/unnamed.jpg"; // Update with actual path to the designer's photo
 
 const About = () => {
   return (
     <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] w-full min-h-screen bg-white py-8 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto flex flex-col items-center md:flex-row md:items-start">
+      <div className="container mx-auto flex flex-col-reverse md:flex-row md:items-start">
         {/* Designer's Photo */}
         <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
           <img
             src={designerPhoto}
             alt="Fashion Designer"
-            className="w-full max-w-sm h-auto rounded-lg shadow-lg object-cover"
+            className="w-full max-w-sm h-[480px] rounded-lg shadow-lg object-cover"
           />
         </div>
 

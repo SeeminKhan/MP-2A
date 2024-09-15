@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import celeb1 from "../images/Atelier.jpg";
-import celeb2 from "../images/atelier3.jpg";
-import celeb3 from "../images/atelier5.jpg";
-import celeb4 from "../images/AtelierP2.jpg";
+import celeb1 from "./Atelier.jpg";
+import celeb2 from "./atelier3.jpg";
+import celeb3 from "./atelier5.jpg";
+import celeb4 from "./AtelierP2.jpg";
 
 
 
