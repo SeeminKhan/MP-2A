@@ -23,9 +23,9 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mx-auto mt-[92px] px-8">
+    <div className="container mx-auto mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] px-8">
       {cartItems.length === 0 ? (
-        <div className="text-center text-lg text-stone-600">
+        <div className="flex h-[26rem] justify-center items-center text-center text-lg font-semibold text-black">
           Your cart is empty{" "}
           <Link to="/shop" className="underline text-stone-800">
             Go To Shop
@@ -61,11 +61,14 @@ const Cart = () => {
                   </Link>
                   <div className="mt-1 text-stone-500 text-sm">{item.brand}</div>
                   <div className="mt-1 text-black font-semibold text-lg">
-                  ₹ {item.price}
+                    ₹ {item.price}
+                  </div>
+                  <div className="mt-1 text-stone-500 text-sm">
+                    Size: {item.size} {/* Display selected size */}
                   </div>
                   <div className="mt-2">
                     <select
-                      className=" p-2 border border-stone-400 rounded text-stone-800 text-sm"
+                      className="p-2 border border-stone-400 rounded text-stone-800 text-sm"
                       value={item.qty}
                       onChange={(e) =>
                         addToCartHandler(item, Number(e.target.value))
@@ -102,7 +105,7 @@ const Cart = () => {
               {cartItems.reduce((acc, item) => acc + item.qty, 0)})
             </div>
             <div className="text-2xl font-bold text-black mb-4">
-            ₹ {" "}
+              ₹{" "}
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}

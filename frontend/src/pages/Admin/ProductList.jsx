@@ -77,7 +77,7 @@ const ProductList = () => {
   };
 
   return (
-    <div className="mt-[92px] w-full px-4 sm:px-6 lg:px-8">
+    <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] w-full px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row w-full">
         <div className="md:w-3/4 p-4 rounded-lg mx-auto">
           <h2 className="text-2xl font-bold mb-4 text-black">Create Product</h2>

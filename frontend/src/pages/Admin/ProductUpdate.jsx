@@ -126,7 +126,7 @@ const AdminProductUpdate = () => {
   }
 
   return (
-    <div className="mt-[92px] p-4 md:p-8 bg-gray-100">
+    <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] p-4 md:p-8 bg-gray-100">
       <div className="container mx-auto flex flex-col md:flex-row bg-white shadow-lg rounded-lg p-4 md:p-8">
         {/* <AdminMenu /> */}
         <div className="md:w-3/4">

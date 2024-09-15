@@ -7,7 +7,7 @@ const UserOrder = () => {
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
 
   return (
-    <div className="mt-[92px] container mx-auto p-8 bg-white shadow-lg rounded-lg">
+    <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] container mx-auto p-8 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-stone-900">My Orders</h2>
 
       {isLoading ? (

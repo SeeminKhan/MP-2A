@@ -16,7 +16,7 @@ const OrderList = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <div className="mt-[92px] p-4 h-screen">
+        <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] p-4 h-screen">
            <h1 className="text-2xl font-semibold mb-4 text-gray-800">Order List</h1>
           {/* <AdminMenu /> */}
 

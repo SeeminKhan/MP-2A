@@ -40,7 +40,7 @@ const PlaceOrder = () => {
   };
 
   return (
-    <div className="mt-[92px] px-6">
+    <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] px-6">
       <ProgressSteps step1 step2 step3 />
 
       <div className="container mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg max-w-4xl">
@@ -75,7 +75,7 @@ const PlaceOrder = () => {
                     <td className="p-2 border-b">{item.qty}</td>
                     <td className="p-2 border-b">{item.price.toFixed(2)}</td>
                     <td className="p-2 border-b">
-                      ${(item.qty * item.price).toFixed(2)}
+                    ₹ {(item.qty * item.price).toFixed(2)}
                     </td>
                   </tr>
                 ))}

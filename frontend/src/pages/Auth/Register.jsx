@@ -48,7 +48,7 @@ const Register = () => {
   };
 
   return (
-    <div className="mt-[92px] flex flex-col md:flex-row">
+    <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] flex flex-col md:flex-row">
       {/* Left Image Section */}
       <div className="w-1/2 hidden md:flex items-center justify-center pl-8">
         <img
@@ -61,7 +61,9 @@ const Register = () => {
       {/* Right Form Section */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-white p-4 md:p-8">
         <div className="max-w-lg w-full space-y-6">
-          <h1 className="text-4xl font-bold text-black mb-4">Register</h1>
+        <div className="w-full sm:w-auto flex justify-center items-center h-full">
+  <p className="text-center text-3xl font-bold">Register</p>
+</div>
 
           <form onSubmit={submitHandler} className="space-y-6">
             <div>
