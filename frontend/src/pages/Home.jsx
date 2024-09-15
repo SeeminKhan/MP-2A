@@ -6,7 +6,7 @@ import Slider from "./Products/ProductCarousel";
 import Product from "./Products/Product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import ImageSlider from "../StyleCard/ImgSlider";
+
 
 // Import local images
 import celeb1 from "./act1.jpeg";
