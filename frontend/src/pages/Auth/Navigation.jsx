@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import logo from "../../images/LOGO1.jpg"; // Path to the logo image
+import logo from "../../images/logo.jpg"; // Path to the logo image
 
 import { FaBars, FaTimes } from "react-icons/fa";
 import {
@@ -88,6 +88,13 @@ const Navigation = () => {
             HOME
           </Link>
           <Link
+            to="/shop"
+            className={`text-xl ${isActiveLink("/shop")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
+            onClick={toggleSidebar}
+          >
+            SHOP
+          </Link>
+          <Link
             to="/atelier"
             className={`text-xl ${isActiveLink("/atelier")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
             onClick={toggleSidebar}
@@ -95,12 +102,13 @@ const Navigation = () => {
             ATELIER 
           </Link>
           <Link
-            to="/shop"
-            className={`text-xl ${isActiveLink("/shop")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
+            to="/skcircle"
+            className={`text-xl ${isActiveLink("/")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
             onClick={toggleSidebar}
           >
-            SHOP
+            SK CIRCLE
           </Link>
+          
           <Link
             to="/favorite"
             className={`text-xl ${isActiveLink("/favorite")} hover:border-b-2 hover:border-black hover:text-black transition-all duration-300 p-2`}
@@ -127,7 +135,7 @@ const Navigation = () => {
 
       {/* Main Navbar */}
       <div
-        className={`fixed top-0 left-0 w-full py-4 px-6 flex justify-between items-center z-30 transition-all ${
+        className={`fixed top-0 left-0 w-full py-4 px-6 flex justify-between items-center z-50  transition-all ${
           scrolling
             ? "bg-white text-black shadow-md"
             : "bg-transparent text-black"

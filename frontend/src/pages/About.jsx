@@ -1,4 +1,4 @@
-import designerPhoto from "../images/unnamed.jpg"; // Update with actual path to the designer's photo
+import designerPhoto from "../images/designer.jpg"; // Update with actual path to the designer's photo
 
 const About = () => {
   return (

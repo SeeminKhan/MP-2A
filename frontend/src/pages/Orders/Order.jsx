@@ -185,7 +185,7 @@ const Order = () => {
           </div>
 
           {!order.isPaid && (
-            <div className="mt-4">
+            <div className="relative mt-4 z-10">
               {loadingPay && <Loader />}
               {isPending ? (
                 <Loader />
