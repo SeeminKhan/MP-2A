@@ -10,8 +10,12 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  const addToCartHandler = (product, qty) => {
-    dispatch(addToCart({ ...product, qty }));
+  const handleQuantityChange = (item, qty) => {
+    dispatch(addToCart({ ...item, qty }));
+  };
+
+  const handleSizeChange = (item, size) => {
+    dispatch(addToCart({ ...item, size }));
   };
 
   const removeFromCartHandler = (id) => {
@@ -66,12 +70,26 @@ const Cart = () => {
                   <div className="mt-1 text-stone-500 text-sm">
                     Size: {item.size} {/* Display selected size */}
                   </div>
-                  <div className="mt-2">
+                  <div className="mt-2 flex flex-col space-y-2">
+                    <select
+                      className="p-2 border border-stone-400 rounded text-stone-800 text-sm"
+                      value={item.size || ""}
+                      onChange={(e) =>
+                        handleSizeChange(item, e.target.value)
+                      }
+                    >
+                      {/* Assuming you have predefined sizes */}
+                      {["XS","S", "M", "L", "XL", "XXL", "XXXL"].map((size) => (
+                        <option key={size} value={size}>
+                          {size}
+                        </option>
+                      ))}
+                    </select>
                     <select
                       className="p-2 border border-stone-400 rounded text-stone-800 text-sm"
                       value={item.qty}
                       onChange={(e) =>
-                        addToCartHandler(item, Number(e.target.value))
+                        handleQuantityChange(item, Number(e.target.value))
                       }
                     >
                       {[...Array(item.countInStock).keys()].map((x) => (
