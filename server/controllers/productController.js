@@ -2,72 +2,42 @@ const asyncHandler = require("../middlewares/asyncHandler.js");
 const Product = require("../models/productModel.js");
 
 const addProduct = asyncHandler(async (req, res) => {
+  const { name, description, price, category, quantity, brand } = req.fields;
+
+  // Validation
+  if (!name || !brand || !description || !price || !category || !quantity) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
   try {
-    const { name, description, price, category, quantity, brand } = req.fields;
-
-    // Validation
-    switch (true) {
-      case !name:
-        return res.json({ error: "Name is required" });
-      case !brand:
-        return res.json({ error: "Brand is required" });
-      case !description:
-        return res.json({ error: "Description is required" });
-      case !price:
-        return res.json({ error: "Price is required" });
-      case !category:
-        return res.json({ error: "Category is required" });
-      case !quantity:
-        return res.json({ error: "Quantity is required" });
-    }
-
     const product = new Product({ ...req.fields });
     await product.save();
-    res.json(product);
+    res.status(201).json(product);
   } catch (error) {
     console.error(error);
-    res.status(400).json(error.message);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
 const updateProductDetails = asyncHandler(async (req, res) => {
+  const { name, description, price, category, quantity, brand } = req.fields;
+
+  // Validation
+  if (!name || !brand || !description || !price || !category || !quantity) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
   try {
-    const { name, description, price, category, quantity, brand } = req.fields;
-
-    // Validation
-    switch (true) {
-      case !name:
-        return res.json({ error: "Name is required" });
-      case !brand:
-        return res.json({ error: "Brand is required" });
-      case !description:
-        return res.json({ error: "Description is required" });
-      case !price:
-        return res.json({ error: "Price is required" });
-      case !category:
-        return res.json({ error: "Category is required" });
-      case !quantity:
-        return res.json({ error: "Quantity is required" });
-    }
-
     const product = await Product.findByIdAndUpdate(
       req.params.id,
       { ...req.fields },
-      { new: true }
+      { new: true, runValidators: true }
     );
 
-    await product.save();
+    if (!product) {
+      return res.status(404).json({ error: "Product not found" });
+    }
 
-    res.json(product);
-  } catch (error) {
-    console.error(error);
-    res.status(400).json(error.message);
-  }
-});
-
-const removeProduct = asyncHandler(async (req, res) => {
-  try {
-    const product = await Product.findByIdAndDelete(req.params.id);
     res.json(product);
   } catch (error) {
     console.error(error);
@@ -75,46 +45,51 @@ const removeProduct = asyncHandler(async (req, res) => {
   }
 });
 
-const fetchProducts = asyncHandler(async (req, res) => {
+const removeProduct = asyncHandler(async (req, res) => {
   try {
-    const pageSize = 6;
+    const product = await Product.findByIdAndDelete(req.params.id);
+    if (!product) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+    res.json({ message: "Product removed", product });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
-    const keyword = req.query.keyword
-      ? {
-          name: {
-            $regex: req.query.keyword,
-            $options: "i",
-          },
-        }
-      : {};
+const fetchProducts = asyncHandler(async (req, res) => {
+  const pageSize = 6;
+  const keyword = req.query.keyword
+    ? { name: { $regex: req.query.keyword, $options: "i" } }
+    : {};
 
-    const count = await Product.countDocuments({ ...keyword });
-    const products = await Product.find({ ...keyword }).limit(pageSize);
+  try {
+    const count = await Product.countDocuments(keyword);
+    const products = await Product.find(keyword).limit(pageSize);
 
     res.json({
       products,
       page: 1,
       pages: Math.ceil(count / pageSize),
-      hasMore: false,
+      hasMore: count > pageSize,
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: "Server error" });
   }
 });
 
 const fetchProductById = asyncHandler(async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    if (product) {
-      return res.json(product);
-    } else {
-      res.status(404);
-      throw new Error("Product not found");
+    if (!product) {
+      return res.status(404).json({ error: "Product not found" });
     }
+    res.json(product);
   } catch (error) {
     console.error(error);
-    res.status(404).json({ error: "Product not found" });
+    res.status(500).json({ error: "Server error" });
   }
 });
 
@@ -123,54 +98,51 @@ const fetchAllProducts = asyncHandler(async (req, res) => {
     const products = await Product.find({})
       .populate("category")
       .limit(12)
-      .sort({ createAt: -1 });
+      .sort({ createdAt: -1 }); // Corrected field name to 'createdAt'
 
     res.json(products);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: "Server error" });
   }
 });
 
 const addProductReview = asyncHandler(async (req, res) => {
+  const { rating, comment } = req.body;
+
   try {
-    const { rating, comment } = req.body;
     const product = await Product.findById(req.params.id);
-
-    if (product) {
-      const alreadyReviewed = product.reviews.find(
-        (r) => r.user.toString() === req.user._id.toString()
-      );
-
-      if (alreadyReviewed) {
-        res.status(400);
-        throw new Error("Product already reviewed");
-      }
-
-      const review = {
-        name: req.user.username,
-        rating: Number(rating),
-        comment,
-        user: req.user._id,
-      };
-
-      product.reviews.push(review);
-
-      product.numReviews = product.reviews.length;
-
-      product.rating =
-        product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-        product.reviews.length;
-
-      await product.save();
-      res.status(201).json({ message: "Review added" });
-    } else {
-      res.status(404);
-      throw new Error("Product not found");
+    if (!product) {
+      return res.status(404).json({ error: "Product not found" });
     }
+
+    const alreadyReviewed = product.reviews.some(
+      (r) => r.user.toString() === req.user._id.toString()
+    );
+
+    if (alreadyReviewed) {
+      return res.status(400).json({ error: "Product already reviewed" });
+    }
+
+    const review = {
+      name: req.user.username,
+      rating: Number(rating),
+      comment,
+      user: req.user._id,
+    };
+
+    product.reviews.push(review);
+    product.numReviews = product.reviews.length;
+
+    product.rating =
+      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      product.reviews.length;
+
+    await product.save();
+    res.status(201).json({ message: "Review added" });
   } catch (error) {
     console.error(error);
-    res.status(400).json(error.message);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
@@ -180,7 +152,7 @@ const fetchTopProducts = asyncHandler(async (req, res) => {
     res.json(products);
   } catch (error) {
     console.error(error);
-    res.status(400).json(error.message);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
@@ -190,23 +162,23 @@ const fetchNewProducts = asyncHandler(async (req, res) => {
     res.json(products);
   } catch (error) {
     console.error(error);
-    res.status(400).json(error.message);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
 const filterProducts = asyncHandler(async (req, res) => {
+  const { checked, radio } = req.body;
+
+  let args = {};
+  if (checked.length > 0) args.category = checked;
+  if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+
   try {
-    const { checked, radio } = req.body;
-
-    let args = {};
-    if (checked.length > 0) args.category = checked;
-    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
-
     const products = await Product.find(args);
     res.json(products);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: "Server error" });
   }
 });
 

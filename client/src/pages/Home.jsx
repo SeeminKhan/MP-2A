@@ -25,7 +25,7 @@ const HomePage = () => {
   useEffect(() => {
     const slideInterval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 5000); // Change slide every 5 seconds
+    }, 5001); // Change slide every 5 seconds
 
     return () => clearInterval(slideInterval);
   }, [slides.length]);
