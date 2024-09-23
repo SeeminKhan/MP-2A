@@ -24,33 +24,35 @@ const Shop = () => {
     radio,
   });
 
+  // Fetch and set categories
   useEffect(() => {
-    if (!categoriesQuery.isLoading) {
+    if (!categoriesQuery.isLoading && categoriesQuery.data) {
       dispatch(setCategories(categoriesQuery.data));
     }
   }, [categoriesQuery.data, dispatch]);
 
+  // Filter products based on checked categories, price, and radio filters
   useEffect(() => {
-    if (!checked.length || !radio.length) {
-      if (!filteredProductsQuery.isLoading) {
-        const filteredProducts = filteredProductsQuery.data.filter((product) => {
-          return (
-            product.price.toString().includes(priceFilter) ||
-            product.price === parseInt(priceFilter, 10)
-          );
-        });
-        dispatch(setProducts(filteredProducts));
-      }
+    if (filteredProductsQuery.data && !checked.length && !radio.length) {
+      const filteredProducts = filteredProductsQuery.data.filter((product) => {
+        return (
+          product.price.toString().includes(priceFilter) ||
+          product.price === parseInt(priceFilter, 10)
+        );
+      });
+      dispatch(setProducts(filteredProducts));
     }
   }, [checked, radio, filteredProductsQuery.data, dispatch, priceFilter]);
 
+  // Handle brand click filtering
   const handleBrandClick = (brand) => {
     const productsByBrand = filteredProductsQuery.data?.filter(
       (product) => product.brand === brand
     );
-    dispatch(setProducts(productsByBrand));
+    dispatch(setProducts(productsByBrand || [])); // Provide a fallback if no products match
   };
 
+  // Handle category check
   const handleCheck = (value, id) => {
     const updatedChecked = value
       ? [...checked, id]
@@ -58,6 +60,7 @@ const Shop = () => {
     dispatch(setChecked(updatedChecked));
   };
 
+  // Unique brands for filtering
   const uniqueBrands = [
     ...Array.from(
       new Set(
@@ -68,6 +71,7 @@ const Shop = () => {
     ),
   ];
 
+  // Handle price change in the filter
   const handlePriceChange = (e) => {
     setPriceFilter(e.target.value);
   };
@@ -75,6 +79,7 @@ const Shop = () => {
   return (
     <div className="mt-[94px] container mx-auto">
       <div className="flex flex-col md:flex-row">
+        {/* Filter section */}
         {/* Uncomment and customize the filter section as needed */}
         {/* <div className="bg-white p-4 mb-4 rounded-lg shadow-lg text-black">
           <h2 className="text-lg text-center py-2 bg-black text-white rounded-lg mb-4">
@@ -146,12 +151,13 @@ const Shop = () => {
           </div>
         </div> */}
 
+        {/* Products section */}
         <div className="px-3 mb-4 w-full">
           {/* <h2 className="text-2xl font-semibold text-center text-black mb-4">
             Showing all ({products?.length} Products)
           </h2> */}
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-6">
-            {products.length === 0 ? (
+            {products && products.length === 0 ? (
               <Loader />
             ) : (
               products?.map((p) => (
