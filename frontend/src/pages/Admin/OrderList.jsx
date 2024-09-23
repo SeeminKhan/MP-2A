@@ -16,7 +16,7 @@ const OrderList = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] p-4 h-screen">
+        <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] px-4">
            <h1 className="text-2xl font-semibold mb-4 text-gray-800">Order List</h1>
           {/* <AdminMenu /> */}
 
@@ -48,7 +48,7 @@ const OrderList = () => {
                     <td className="p-3">{order._id}</td>
                     <td className="p-3">{order.user ? order.user.username : "N/A"}</td>
                     <td className="p-3">{order.createdAt ? order.createdAt.substring(0, 10) : "N/A"}</td>
-                    <td className="p-3">${order.totalPrice}</td>
+                    <td className="p-3">₹ {order.totalPrice}</td>
                     <td className="p-3 text-center">
                       {order.isPaid ? (
                         <p className="inline-block px-2 py-1 text-white bg-green-500 rounded-full">Completed</p>
