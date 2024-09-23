@@ -1,12 +1,9 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 import celeb1 from "../images/Atelier.jpg";
 import celeb2 from "../images/atelier3.jpg";
 import celeb3 from "../images/atelier5.jpg";
 import celeb4 from "../images/AtelierP2.jpg";
-
-
 
 // Sample images for the custom designs
 const customDesigns = [
@@ -45,15 +42,13 @@ const Atelier = () => {
 
       {/* WhatsApp Button */}
       <div className="text-center">
-        <a
-          href="https://wa.me/7208144910" // Replace with Sharmeena Kariyaniya's WhatsApp number
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-black text-white py-3 px-6 rounded-full text-lg font-bold shadow-lg hover:bg-gray-800 transition duration-300"
-        >
-          Customize Your Own
-        </a>
-      </div>
+  <Link
+    to="/customize"
+    className="bg-black text-white py-3 px-6 rounded-full text-lg font-bold shadow-lg hover:bg-gray-800 transition duration-300"
+  >
+    Customize Your Own
+  </Link>
+</div>
     </div>
   );
 };

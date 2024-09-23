@@ -7,7 +7,6 @@ import {
 } from "../../redux/api/orderApiSlice";
 
 import { useState, useEffect } from "react";
-import OrderList from "./OrderList";
 import Loader from "../../components/Loader";
 
 const AdminDashboard = () => {
@@ -95,7 +94,7 @@ const AdminDashboard = () => {
               <div className="ml-4">
                 <p className="text-gray-300">Sales</p>
                 <h1 className="text-2xl font-bold text-white">
-                  {loadingSales ? <Loader /> : `$${sales.totalSales.toFixed(2)}`}
+                  {loadingSales ? <Loader /> : `₹ ${sales.totalSales.toFixed(2)}`}
                 </h1>
               </div>
             </div>

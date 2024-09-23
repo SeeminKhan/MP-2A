@@ -158,7 +158,7 @@ const Navigation = () => {
                 className="w-40 h-[70px]" // Adjust size as needed
               />
             ) : (
-              <span className="text-2xl font-extrabold">SHARMEENA KARIYANIYA</span> // Brand name
+              <span className="text-xl lg:text-2xl font-extrabold">SHARMEENA KARIYANIYA</span> // Brand name
             )}
           </Link>
         </div>

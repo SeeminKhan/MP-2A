@@ -13,7 +13,7 @@ const Footer = () => {
       {/* Book an Appointment */}
       <div className="text-center py-4 border-b border-gray-700">
       <a
-          href="https://wa.me/7208144910" // Replace with Sharmeena Kariyaniya's WhatsApp number
+          href="https://wa.me/7304147079" // Replace with Sharmeena Kariyaniya's WhatsApp number
           target="_blank"
           rel="noopener noreferrer"
           className="bg-black text-white py-4 px-6 rounded-full text-lg font-bold shadow-lg hover:bg-gray-800 transition duration-300"

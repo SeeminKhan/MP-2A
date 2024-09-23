@@ -33,6 +33,7 @@ import Shop from "./pages/Shop.jsx";
 import About from "./pages/About.jsx";
 import Skcircle from "./pages/Skcircle.jsx";
 import Atelier from "./pages/Atelier.jsx";
+import CustomizePage from './pages/Customize.jsx'
 import Error from "./pages/Error.jsx";
 import Shipping from "./pages/Orders/Shipping.jsx";
 import PlaceOrder from "./pages/Orders/PlaceOrder.jsx";
@@ -56,6 +57,7 @@ const router = createBrowserRouter(
       <Route path="/about" element={<About />} />
       <Route path="/skcircle" element={<Skcircle />} />
       <Route path="/atelier" element={<Atelier />} />
+      <Route path="/customize" element={<CustomizePage />} />
       <Route path="/error" element={<Error />} />
 
       {/* Registered users */}

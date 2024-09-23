@@ -27,7 +27,7 @@ const Home = () => {
   ];
 
   // WhatsApp number (replace with the actual WhatsApp number)
-  const whatsappNumber = "7208144910";
+  const whatsappNumber = "7304147079";
 
   return (
     <div className="overflow-x-hidden">
