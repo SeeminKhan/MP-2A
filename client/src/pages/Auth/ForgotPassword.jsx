@@ -1,42 +1,39 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForgotPasswordMutation } from "../../redux/api/usersApiSlice";
-import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
 
-const ForgotPassword = () => {
+const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
-  const navigate = useNavigate();
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
     try {
-      await forgotPassword({ email }).unwrap();
-      toast.success("Password reset link sent to your email.");
-      navigate("/login");
+      const res = await forgotPassword({ email }).unwrap();
+      toast.success(res.message || "Password reset link sent! Check your email.");
     } catch (err) {
-      toast.error(err?.data?.message || err.error);
+      toast.error(err?.data?.message || "Failed to send reset link.");
     }
   };
 
   return (
-    <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] flex justify-center items-center">
-      <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-lg">
-        <h1 className="text-4xl font-bold text-black mb-4">Forgot Password</h1>
-
+    <div className="flex items-center justify-center mt-12">
+      <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold text-center mb-6">Forgot Password</h2>
         <form onSubmit={submitHandler} className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-bold text-black">
-              Email Address
+              Enter your email address
             </label>
             <input
               type="email"
               id="email"
               className="mt-2 p-3 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-black"
-              placeholder="Enter your email"
+              placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
 
@@ -45,14 +42,12 @@ const ForgotPassword = () => {
             type="submit"
             className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-all"
           >
-            {isLoading ? "Sending..." : "Send Password Reset Link"}
+            {isLoading ? "Sending..." : "Send Reset Link"}
           </button>
-
-          {isLoading && <Loader />}
         </form>
       </div>
     </div>
   );
 };
 
-export default ForgotPassword;
+export default ForgetPassword;
