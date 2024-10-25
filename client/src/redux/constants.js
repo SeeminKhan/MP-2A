@@ -1,4 +1,11 @@
-export const BASE_URL = "";
+let baseUrl;
+if (process.env.NODE_ENV === 'development') {
+  baseUrl = "http://localhost:5000";
+} else {
+  baseUrl = "https://server-3hpa8hem3-seemin-khans-projects.vercel.app/";
+}
+export const BASE_URL = baseUrl;
+
 export const USERS_URL = "/api/users";
 export const CATEGORY_URL = "/api/category";
 export const PRODUCT_URL = "/api/products";
