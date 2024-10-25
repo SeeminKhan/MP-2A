@@ -21,8 +21,13 @@ connectDB();
 const app = express();
 
 // CORS Middleware
+const allowedOrigins = [
+  'http://localhost:5173', // Development URL
+  'https://fashion-forge.onrender.com' // Add your production URL here
+];
+
 app.use(cors({
-  origin: 'http://localhost:5173', // Update this with your frontend URL
+  origin: allowedOrigins, // Allow both development and production URLs
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
   credentials: true // Enable sending of cookies and other credentials
 }));
