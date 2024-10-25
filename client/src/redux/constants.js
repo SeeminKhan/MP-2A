@@ -1,9 +1,5 @@
-let baseUrl;
-if (process.env.NODE_ENV === 'development') {
-  baseUrl = "http://localhost:5000";
-} else {
-  baseUrl = "https://server-y9qa.onrender.com";
-}
+let baseUrl = "https://server-y9qa.onrender.com";
+
 export const BASE_URL = baseUrl;
 
 export const USERS_URL = "/api/users";
