@@ -38,7 +38,7 @@ const AllProducts = () => {
               >
                 <div className="flex flex-col h-full object-cover">
                   <img
-                    src={product.image || '/placeholder-image.jpg'}
+                    src={`${BASE_URL}${p.image}` || '/placeholder-image.jpg'}
                     alt={product.name}
                     className="w-full h-48 object-cover"
                   />

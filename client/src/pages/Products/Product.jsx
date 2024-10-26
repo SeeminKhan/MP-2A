@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
+import { BASE_URL } from "../../redux/constants";
 
 const Product = ({ product }) => {
   return (
@@ -7,7 +8,7 @@ const Product = ({ product }) => {
       <div className="relative overflow-hidden">
         {/* Product Image */}
         <img
-          src={product.image}
+          src={`${BASE_URL}${p.image}`}
           alt={product.name}
           className="w-full h-[20rem] object-cover transition-transform duration-500 ease-in-out hover:scale-110"
         />

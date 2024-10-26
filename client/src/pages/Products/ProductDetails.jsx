@@ -20,6 +20,7 @@ import HeartIcon from "./HeartIcon";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
 import { addToCart } from "../../redux/features/cart/cartSlice";
+import { BASE_URL } from "../../redux/constants";
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
@@ -77,7 +78,7 @@ const ProductDetails = () => {
           {/* Left Section: Product Image */}
           <div className="w-full lg:w-1/2 relative mb-8 lg:mb-0 px-4 lg:px-8">
             <img
-              src={product.image}
+              src={`${BASE_URL}${p.image}`}
               alt={product.name}
               className="w-full h-auto object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
             />

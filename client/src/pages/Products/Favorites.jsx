@@ -11,6 +11,7 @@ import {
   removeFavoriteFromLocalStorage,
 } from "../../Utils/localStorage";
 import HeartIcon from "./HeartIcon";
+import { BASE_URL } from "../../redux/constants";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const Favorites = () => {
                 {/* Product Image */}
                 <div className="w-full h-60 mb-4">
                   <img
-                    src={product.image}
+                    src={`${BASE_URL}${p.image}`}
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />

@@ -20,6 +20,7 @@ import {
 import moment from "moment";
 import ProductTabs from "./Tabs";
 import HeartIcon from "./HeartIcon";
+import { BASE_URL } from "../../redux/constants";
 
 const Product = () => {
   const { id: productId } = useParams();
@@ -88,7 +89,7 @@ const Product = () => {
               {/* Left: Product Image */}
               <div className="w-full lg:w-1/2 relative">
                 <img
-                  src={product.image}
+                  src={`${BASE_URL}${p.image}`}
                   alt={product.name}
                   className="w-full h-auto rounded-lg object-cover"
                 />
