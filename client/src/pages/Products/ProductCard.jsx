@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { toast } from "react-toastify";
 import HeartIcon from "./HeartIcon"; // Import the HeartIcon component
+import { BASE_URL } from "../../constants"; // Import the BASE_URL for images
 
 const ProductCard = ({ p }) => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const ProductCard = ({ p }) => {
         <div className="w-full h-[300px] md:h-[350px] lg:h-[400px] relative overflow-hidden">
           <img
             className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110"
-            src={p.image}
+            src={`${BASE_URL}${p.image}`} // Construct the full image URL
             alt={p.name}
           />
           
