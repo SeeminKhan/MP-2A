@@ -78,7 +78,7 @@ const ProductDetails = () => {
           {/* Left Section: Product Image */}
           <div className="w-full lg:w-1/2 relative mb-8 lg:mb-0 px-4 lg:px-8">
             <img
-              src={`${BASE_URL}${p.image}`}
+              src={`${BASE_URL}${product.image}`}
               alt={product.name}
               className="w-full h-auto object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
             />

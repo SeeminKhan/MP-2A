@@ -8,7 +8,7 @@ const Product = ({ product }) => {
       <div className="relative overflow-hidden">
         {/* Product Image */}
         <img
-          src={`${BASE_URL}${p.image}`}
+          src={`${BASE_URL}${product.image}`}
           alt={product.name}
           className="w-full h-[20rem] object-cover transition-transform duration-500 ease-in-out hover:scale-110"
         />

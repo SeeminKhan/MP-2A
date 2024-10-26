@@ -31,7 +31,7 @@ const Footer = () => {
           className="border-b border-gray-600 flex justify-between items-center py-3 cursor-pointer"
           onClick={() => setIsCompanyOpen(!isCompanyOpen)}
         >
-          <h4 className="text-lg font-semibold tracking-wide uppercase">The Company</h4>
+          <h4 className="text-sm font-semibold tracking-wide uppercase">The Company</h4>
           <MdKeyboardArrowRight className={`text-white text-xl transform ${isCompanyOpen ? 'rotate-90' : ''}`} />
         </div>
         {isCompanyOpen && (
@@ -45,7 +45,7 @@ const Footer = () => {
           className="border-b border-gray-600 flex justify-between items-center py-3 cursor-pointer"
           onClick={() => setIsHelpOpen(!isHelpOpen)}
         >
-          <h4 className="text-lg font-semibold tracking-wide uppercase">Need Help</h4>
+          <h4 className="text-sm font-semibold tracking-wide uppercase">Need Help</h4>
           <MdKeyboardArrowRight className={`text-white text-xl transform ${isHelpOpen ? 'rotate-90' : ''}`} />
         </div>
         {isHelpOpen && (
@@ -61,7 +61,7 @@ const Footer = () => {
           className="border-b border-gray-600 flex justify-between items-center py-3 cursor-pointer"
           onClick={() => setIsLegalOpen(!isLegalOpen)}
         >
-          <h4 className="text-lg font-semibold tracking-wide uppercase">Legal</h4>
+          <h4 className="text-sm font-semibold tracking-wide uppercase">Legal</h4>
           <MdKeyboardArrowRight className={`text-white text-xl transform ${isLegalOpen ? 'rotate-90' : ''}`} />
         </div>
         {isLegalOpen && (

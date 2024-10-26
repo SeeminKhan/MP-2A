@@ -89,7 +89,7 @@ const Product = () => {
               {/* Left: Product Image */}
               <div className="w-full lg:w-1/2 relative">
                 <img
-                  src={`${BASE_URL}${p.image}`}
+                  src={`${BASE_URL}${product.image}`}
                   alt={product.name}
                   className="w-full h-auto rounded-lg object-cover"
                 />
