@@ -2,6 +2,7 @@ import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { Link } from "react-router-dom";
 import { useGetOrdersQuery } from "../../redux/api/orderApiSlice";
+// import AdminMenu from "./AdminMenu";
 
 const OrderList = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
@@ -16,7 +17,8 @@ const OrderList = () => {
         </Message>
       ) : (
         <div className="mt-12 sm:mt-6 md:mt-[80px] lg:mt-[92px] px-4">
-          <h1 className="text-2xl font-semibold mb-4 text-gray-800">Order List</h1>
+           <h1 className="text-2xl font-semibold mb-4 text-gray-800">Order List</h1>
+          {/* <AdminMenu /> */}
 
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
@@ -38,7 +40,7 @@ const OrderList = () => {
                   <tr key={order._id} className="border-b hover:bg-gray-50">
                     <td className="p-3">
                       <img
-                        src={order.orderItems[0]?.image} // Ensure image is accessible
+                        src={order.orderItems[0].image}
                         alt={order._id}
                         className="w-16 h-16 object-cover rounded"
                       />
